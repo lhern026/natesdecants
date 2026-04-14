@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get in touch with Nathan's Decants — we're here to help.">
+    <title>Contact Us — Nathan's Decants</title>
+    <link rel="stylesheet" href="assets/theme.css">
+    <style>
+        .contact-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            padding-top: 140px;
+            padding-bottom: var(--space-2xl);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .form-group label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-secondary);
+        }
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--ink);
+            transition: border-color 0.2s ease;
+            outline: none;
+            resize: vertical;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--ink);
+        }
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: #c0392b;
+        }
+        .field-error {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: #c0392b;
+            letter-spacing: 0.05em;
+        }
+        @media (max-width: 768px) {
+            .contact-page {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+                padding-top: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-orb"></div>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+        <div class="header-pill">
+            <a href="index.html" class="logo">Nathan's <em>Decants</em></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="collection.html" class="nav-link">Shop</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#" id="searchTrigger" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+                </a>
+                <a href="cart.html" aria-label="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+        <a href="collection.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search fragrances">
+        <div class="search-box">
+            <div class="search-input-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+                <input type="search" id="searchInput" placeholder="Search fragrances, houses..." autocomplete="off">
+                <button id="searchClose" aria-label="Close search">&times;</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <main id="main" class="container">
+        <div class="contact-page">
+            <div class="reveal">
+                <span class="eyebrow" style="margin-bottom: 2rem;">Get in Touch</span>
+                <h1 class="display-lg" style="margin-bottom: var(--space-md);">How can we<br><em>assist</em> you?</h1>
+                <p class="body-text" style="margin-bottom: var(--space-lg);">Questions about a specific scent? Need help tracking an order? Our team is here to ensure your discovery journey is seamless.</p>
+
+                <div style="margin-top: var(--space-lg);">
+                    <h4 class="eyebrow" style="color: var(--ink); margin-bottom: 0.5rem;">Email</h4>
+                    <a href="mailto:support@nathansdecants.com" class="body-text" style="color: var(--accent);">support@nathansdecants.com</a>
+                </div>
+
+                <div style="margin-top: var(--space-lg);">
+                    <h4 class="eyebrow" style="color: var(--ink); margin-bottom: 0.5rem;">Response Time</h4>
+                    <p class="body-text">We reply within 24 hours, Monday–Friday.</p>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="contactName">Your Name</label>
+                        <input type="text" id="contactName" name="name" placeholder="Jane Doe" autocomplete="name">
+                        <span class="field-error" id="nameError" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email Address</label>
+                        <input type="email" id="contactEmail" name="email" placeholder="jane@example.com" autocomplete="email">
+                        <span class="field-error" id="emailError" aria-live="polite"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" name="message" rows="6" placeholder="How can we help?"></textarea>
+                        <span class="field-error" id="messageError" aria-live="polite"></span>
+                    </div>
+                    <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;">
+                        Send Message
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess" aria-live="polite">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+                    <h3 class="display-md" style="margin-bottom: 0.5rem;">Message sent.</h3>
+                    <p>Thanks for reaching out — we'll get back to you within 24 hours.</p>
+                    <a href="collection.html" class="btn btn--ghost" style="margin-top: var(--space-md);">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Nathan's <em style="font-style:italic; color: var(--accent);">Decants</em></h3>
+                    <p>Authentic fragrance discovery from the world's most prestigious houses. Experience luxury, one spray at a time.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="collection.html">All Products</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nathan's Decants. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/cart.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form     = document.getElementById('contactForm');
+        const success  = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let valid = true;
+
+            // Clear previous errors
+            document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+            document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => el.classList.remove('error'));
+
+            // Validate name
+            const name = document.getElementById('contactName');
+            if (!name.value.trim()) {
+                document.getElementById('nameError').textContent = 'Please enter your name.';
+                name.classList.add('error');
+                valid = false;
+            }
+
+            // Validate email
+            const email = document.getElementById('contactEmail');
+            const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                document.getElementById('emailError').textContent = 'Please enter your email.';
+                email.classList.add('error');
+                valid = false;
+            } else if (!emailRe.test(email.value)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                email.classList.add('error');
+                valid = false;
+            }
+
+            // Validate message
+            const message = document.getElementById('contactMessage');
+            if (!message.value.trim()) {
+                document.getElementById('messageError').textContent = 'Please enter a message.';
+                message.classList.add('error');
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Success state
+            form.style.display = 'none';
+            success.style.display = 'block';
+            setTimeout(() => success.classList.add('visible'), 30);
+        });
+
+        document.getElementById('searchClose')?.addEventListener('click', () => {
+            document.getElementById('searchOverlay').classList.remove('active');
+        });
+    });
+    </script>
+</body>
+</html>

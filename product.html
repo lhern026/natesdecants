@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product — Nathan's Decants</title>
+    <link rel="stylesheet" href="assets/theme.css">
+    <style>
+        .product-page {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: var(--space-xl);
+            padding-top: var(--space-2xl);
+            align-items: start;
+            min-height: 100vh;
+        }
+        .product-gallery {
+            position: sticky;
+            top: var(--space-lg);
+            background: #fbf9f6;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xl);
+            border-radius: var(--radius-sm);
+        }
+        .product-gallery img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,0.05));
+            transition: transform 1.2s var(--ease-spring);
+        }
+        .product-page:hover .product-gallery img {
+            transform: translateY(-10px) scale(1.02);
+        }
+        .product-details {
+            padding: var(--space-lg) 0;
+            max-width: 480px;
+        }
+        .vendor-label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        .product-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+        }
+        .product-title em {
+            font-style: italic;
+            color: var(--accent);
+        }
+        .variant-selector {
+            margin: var(--space-lg) 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .variant-option {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            transition: all 0.3s var(--ease-out);
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            background: transparent;
+            color: var(--ink);
+        }
+        .variant-option:hover {
+            border-color: var(--accent);
+        }
+        .variant-option.selected {
+            border-color: var(--ink);
+            background: var(--ink);
+            color: var(--canvas);
+        }
+        .product-price {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+            color: var(--ink);
+        }
+        .product-description {
+            margin: var(--space-md) 0 3rem;
+            color: var(--ink-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .product-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-top: var(--space-xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border);
+        }
+        .feature-item h4 {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            opacity: 0.5;
+        }
+        .feature-item p {
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        /* Add to bag feedback */
+        .add-btn-wrap {
+            position: relative;
+        }
+        .add-bag-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1.5rem;
+            font-size: 0.85rem;
+            transition: all 0.3s var(--ease-out);
+        }
+        .add-bag-btn.added {
+            background: #2e7d45;
+        }
+        @media (max-width: 1024px) {
+            .product-page { grid-template-columns: 1fr; gap: var(--space-xl); padding-top: 100px; }
+            .product-gallery { position: static; aspect-ratio: 1; padding: var(--space-lg); }
+            .product-details { max-width: 100%; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-orb"></div>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+        <div class="header-pill">
+            <a href="index.html" class="logo">Nathan's <em>Decants</em></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="collection.html" class="nav-link active">Shop</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#" id="searchTrigger" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+                </a>
+                <a href="cart.html" aria-label="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+        <a href="collection.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search fragrances">
+        <div class="search-box">
+            <div class="search-input-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+                <input type="search" id="searchInput" placeholder="Search fragrances, houses..." autocomplete="off">
+                <button id="searchClose" aria-label="Close search">&times;</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <main id="main" class="container">
+        <div class="product-page" id="productContent">
+            <!-- Content injected by JS -->
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: var(--space-xl);">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Nathan's <em style="font-style:italic; color: var(--accent);">Decants</em></h3>
+                    <p>Authentic fragrance discovery. Experience luxury, one spray at a time.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="collection.html">All Products</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/cart.js"></script>
+    <script>
+    let currentProduct = null;
+    let selectedVariant = null;
+
+    async function loadProduct() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const handle = urlParams.get('handle');
+        if (!handle) {
+            window.location.href = 'collection.html';
+            return;
+        }
+
+        try {
+            const response = await fetch('data/products.json');
+            const data = await response.json();
+            const product = data.products.find(p => p.handle === handle);
+
+            if (!product) {
+                document.getElementById('productContent').innerHTML =
+                    `<div style="padding: var(--space-2xl) 0; text-align:center;">
+                        <h2 class="display-md" style="margin-bottom:var(--space-md);">Product not found</h2>
+                        <a href="collection.html" class="btn btn--primary">Back to Collection <span class="btn-arrow">→</span></a>
+                    </div>`;
+                return;
+            }
+
+            currentProduct = product;
+            selectedVariant = product.variants[0];
+
+            document.title = `${product.title} — Nathan's Decants`;
+
+            const container = document.getElementById('productContent');
+            const ext = Cart.getImageExt(handle);
+            const mainImage = `assets/products/${handle}_0.${ext}`;
+
+            // Split title for italic last word styling
+            const words = product.title.split(' ');
+            const titleHtml = words.length > 1
+                ? words.slice(0, -1).join(' ') + ' <em>' + words[words.length - 1] + '</em>'
+                : `<em>${product.title}</em>`;
+
+            container.innerHTML = `
+                <div class="product-gallery reveal">
+                    <img src="${mainImage}" alt="${product.title}"
+                        onerror="this.style.opacity='0.15'">
+                </div>
+                <div class="product-details reveal">
+                    <a href="collection.html" style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-tertiary);display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:var(--space-md);">
+                        ← Collection
+                    </a>
+                    <span class="vendor-label">${product.vendor || "Nathan's Decants"}</span>
+                    <h1 class="product-title">${titleHtml}</h1>
+
+                    <div class="product-price" id="activePrice">$${product.variants[0].price}</div>
+
+                    <div class="product-description">
+                        ${product.body_html || "Discover this exquisite scent through our hand-decanted discovery sizes."}
+                    </div>
+
+                    <div style="margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; color: var(--ink-tertiary); letter-spacing: 0.1em;">Discovery Size</div>
+                    <div class="variant-selector" id="variantSelector">
+                        ${product.variants.map((v, i) => `
+                            <button class="variant-option ${i === 0 ? 'selected' : ''}" data-index="${i}" type="button">
+                                ${v.title}
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div class="add-btn-wrap" style="margin-top: var(--space-md);">
+                        <button class="btn btn--primary add-bag-btn" id="addToBagBtn" type="button">
+                            Add to Bag — <span id="btnPrice">$${product.variants[0].price}</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </div>
+
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <h4>Authenticity</h4>
+                            <p>Hand-decanted from the original manufacturer bottle.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Shipping</h4>
+                            <p>Insured delivery in premium protective glass.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Returns</h4>
+                            <p>Satisfaction guaranteed or full refund within 14 days.</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>Lab Standard</h4>
+                            <p>Surgical-grade tools, climate-controlled environment.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Variant selection
+            document.getElementById('variantSelector').addEventListener('click', (e) => {
+                const btn = e.target.closest('.variant-option');
+                if (!btn) return;
+                document.querySelectorAll('.variant-option').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                const idx = parseInt(btn.dataset.index);
+                selectedVariant = product.variants[idx];
+                document.getElementById('activePrice').textContent = `$${selectedVariant.price}`;
+                document.getElementById('btnPrice').textContent  = `$${selectedVariant.price}`;
+            });
+
+            // Add to bag
+            document.getElementById('addToBagBtn').addEventListener('click', () => {
+                if (!selectedVariant) return;
+                Cart.add(product, selectedVariant);
+                const btn = document.getElementById('addToBagBtn');
+                btn.classList.add('added');
+                const orig = btn.innerHTML;
+                btn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                    Added to Bag
+                `;
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.innerHTML = orig;
+                }, 2000);
+            });
+
+            // Reveal
+            setTimeout(() => {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+            }, 80);
+
+        } catch (error) {
+            console.error('Error loading product:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProduct();
+        document.getElementById('searchClose')?.addEventListener('click', () => {
+            document.getElementById('searchOverlay').classList.remove('active');
+        });
+    });
+    </script>
+</body>
+</html>

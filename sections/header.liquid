@@ -1,0 +1,133 @@
+{% style %}
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 2rem;
+    transition: all 0.4s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .header-pill {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(253, 251, 247, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 100px;
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: auto;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .logo em {
+    font-style: italic;
+    font-family: var(--font-display);
+    color: var(--accent);
+  }
+
+  .main-nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.3s var(--ease-out);
+  }
+
+  .nav-link:hover {
+    opacity: 1;
+  }
+
+  .header-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cart-count {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    background: var(--ink);
+    color: var(--canvas);
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: -5px;
+    margin-top: -10px;
+  }
+{% endstyle %}
+
+<header class="site-header" id="SiteHeader">
+  <div class="header-pill">
+    <a href="{{ routes.root_url }}" class="logo">
+      {{ shop.name | split: ' ' | first }} <em>{{ shop.name | split: ' ' | last }}</em>
+    </a>
+    
+    <nav class="main-nav">
+      <ul>
+        {% for link in section.settings.menu.links %}
+          <li><a href="{{ link.url }}" class="nav-link">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+      <a href="{{ routes.search_url }}" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+      </a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+      <button class="mobile-menu-toggle" aria-label="Menu" onclick="document.getElementById('mobileMenu').classList.add('active')">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu-overlay" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="this.parentElement.classList.remove('active')">&times;</button>
+  {% for link in section.settings.menu.links %}
+    <a href="{{ link.url }}" onclick="document.getElementById('mobileMenu').classList.remove('active')">{{ link.title }}</a>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

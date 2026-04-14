@@ -1,0 +1,641 @@
+{
+  "products": [
+    {
+      "id": 10211626025256,
+      "title": "Absolute Aphrodisiac",
+      "handle": "absolute-aphrodisiac",
+      "vendor": "Initio Parfums Privés",
+      "body_html": "<p>A carnal, mysterious vanilla. Absolute Aphrodisiac is a fragrance that lingers in the air and the memory. A soft, warm, and carnal vanilla scent amplified by the subtle mystery of white musk and amber.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 51622953648424, "title": "3ml", "price": "15.00" },
+        { "id": 51622953681192, "title": "5ml", "price": "28.00" },
+        { "id": 51622953713960, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10211623928104,
+      "title": "Atomic Rose",
+      "handle": "atomic-rose",
+      "vendor": "Initio Parfums Privés",
+      "body_html": "<p>Hedonic rose. Atomic Rose is a fragrance that creates a luminous, explosive rose trail. A complex harmony of Italian Bergamot, Bulgarian Rose, and Turkish Rose, rounded by Egyptian Jasmine and Vanilla.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 51622947193128, "title": "3ml", "price": "15.00" },
+        { "id": 51622947225896, "title": "5ml", "price": "28.00" },
+        { "id": 51622947258664, "title": "10ml", "price": "47.00" }
+      ]
+    },
+    {
+      "id": 10211623403816,
+      "title": "Blue Talisman EDP",
+      "handle": "blue-talisman-edp",
+      "vendor": "Ex Nihilo",
+      "body_html": "<p>A crystalline talisman. Blue Talisman is an explosive, addictive fragrance. Notes of Bergamot and Ginger meet the woody depth of Akigalawood and Musk, creating a modern masterpiece of discovery.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 51622941360424, "title": "3ml", "price": "15.00" },
+        { "id": 51622941393192, "title": "5ml", "price": "28.00" },
+        { "id": 51622941425960, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10180056547624,
+      "title": "Adonis Awakens",
+      "handle": "adonis-awakens",
+      "vendor": "Argos",
+      "body_html": "<p>A romantic floral. Adonis Awakens captures the essence of the Greek god of beauty. A sweet, rosy fragrance with notes of Italian Bergamot, Rose Essence, and Vanilla.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 51520947061032, "title": "3ml", "price": "14.00" },
+        { "id": 51520947093800, "title": "5ml", "price": "25.00" },
+        { "id": 51520947126568, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10180056056104,
+      "title": "Babycat",
+      "handle": "babycat",
+      "vendor": "Yves Saint Laurent",
+      "body_html": "<p>The wild side of vanilla. Babycat is a suede-like vanilla that purrs on the skin. A sophisticated blend of pink pepper, incense, and rich bourbon vanilla.</p>",
+      "price": "13.00",
+      "variants": [
+        { "id": 51520945324328, "title": "3ml", "price": "13.00" },
+        { "id": 51520945357096, "title": "5ml", "price": "20.00" },
+        { "id": 51520945389864, "title": "10ml", "price": "37.00" }
+      ]
+    },
+    {
+      "id": 10180055433512,
+      "title": "6 Place Saint Sulpice",
+      "handle": "6-place-saint-sulpice",
+      "vendor": "Yves Saint Laurent",
+      "body_html": "<p>An architectural amber. Inspired by the YSL boutique, this fragrance is a sophisticated blend of labdanum and smoky woods, creating a masculine, sweet, and powerful presence.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 51520943587624, "title": "3ml", "price": "17.00" },
+        { "id": 51520943620392, "title": "5ml", "price": "25.00" },
+        { "id": 51520943653160, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10180017619240,
+      "title": "Another 13",
+      "handle": "another-13",
+      "vendor": "Le Labo",
+      "body_html": "<p>The unconventional clean. Another 13 is an addictive, musk-heavy scent that smells different on everyone. A blend of ambroxan, jasmine, and moss.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 51520904167720, "title": "3ml", "price": "14.00" },
+        { "id": 51520904200488, "title": "5ml", "price": "25.00" },
+        { "id": 51520904233256, "title": "10ml", "price": "40.00" }
+      ]
+    },
+    {
+      "id": 10300001000001,
+      "title": "Afternoon Swim",
+      "handle": "afternoon-swim",
+      "vendor": "Maison Margiela",
+      "body_html": "<p>Sun-soaked aquatics and warm skin. Afternoon Swim is a Replica fragrance that captures the essence of a golden afternoon by the pool — a blend of coconut, solar woods, and a subtle white musk.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 60001001001, "title": "3ml", "price": "14.00" },
+        { "id": 60001001002, "title": "5ml", "price": "24.00" },
+        { "id": 60001001003, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10300001000002,
+      "title": "Angel's Share On the Rocks",
+      "handle": "angel-share-on-the-rocks",
+      "vendor": "Kilian Paris",
+      "body_html": "<p>A whisky-soaked seduction. Angel's Share On the Rocks is the chilled, smoky evolution of the iconic Angel's Share. Cognac, oakwood, and cinnamon over a bed of tonka bean and sandalwood.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001002001, "title": "3ml", "price": "16.00" },
+        { "id": 60001002002, "title": "5ml", "price": "28.00" },
+        { "id": 60001002003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000003,
+      "title": "Angélique Noire",
+      "handle": "angelique-noire-guerlain-paris",
+      "vendor": "Guerlain",
+      "body_html": "<p>Dark angelica from the L'Art & La Matière collection. Angélique Noire marries the crisp, green freshness of angelica root with a deep, smoky tonka bean accord — a paradox of light and shadow.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001003001, "title": "3ml", "price": "17.00" },
+        { "id": 60001003002, "title": "5ml", "price": "30.00" },
+        { "id": 60001003003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000004,
+      "title": "Ani",
+      "handle": "ani",
+      "vendor": "Nishane",
+      "body_html": "<p>A powdery floral odyssey. Ani is a modern oriental inspired by the ancient Anatolian city. Rose, iris, and sandalwood form a warm, powdery harmony that feels timeless and deeply personal.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001004001, "title": "3ml", "price": "15.00" },
+        { "id": 60001004002, "title": "5ml", "price": "27.00" },
+        { "id": 60001004003, "title": "10ml", "price": "48.00" }
+      ]
+    },
+    {
+      "id": 10300001000005,
+      "title": "Aventus Cologne",
+      "handle": "aventus-cologne",
+      "vendor": "Creed",
+      "body_html": "<p>The fresh evolution of a legend. Aventus Cologne reinvents the iconic Aventus with a lighter, more aquatic character — pineapple and bergamot over a vetiver-woody base. Effortlessly confident.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001005001, "title": "3ml", "price": "17.00" },
+        { "id": 60001005002, "title": "5ml", "price": "30.00" },
+        { "id": 60001005003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000006,
+      "title": "Bal d'Afrique Absolu",
+      "handle": "bal-dafrique-absolu",
+      "vendor": "Byredo",
+      "body_html": "<p>The night in full bloom. Bal d'Afrique Absolu is an amplified, richer take on the beloved original — African marigold, bergamot, and violet leaf deepened with oud and musk for an unforgettable presence.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001006001, "title": "3ml", "price": "16.00" },
+        { "id": 60001006002, "title": "5ml", "price": "28.00" },
+        { "id": 60001006003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000007,
+      "title": "Bohemian Lime",
+      "handle": "bohemian-lime",
+      "vendor": "Penhaligon's",
+      "body_html": "<p>A lime-soaked reverie. Bohemian Lime is a bright, zesty citrus fragrance with a warm, woody heart. Italian lime, geranium, and vetiver make this the perfect year-round companion.</p>",
+      "price": "13.00",
+      "variants": [
+        { "id": 60001007001, "title": "3ml", "price": "13.00" },
+        { "id": 60001007002, "title": "5ml", "price": "22.00" },
+        { "id": 60001007003, "title": "10ml", "price": "38.00" }
+      ]
+    },
+    {
+      "id": 10300001000008,
+      "title": "Cabán",
+      "handle": "caban",
+      "vendor": "Hermès",
+      "body_html": "<p>Quietly powerful. Cabán is an Hermessence creation — a woody, tobacco-infused scent with notes of leather, amber, and a touch of sweet vanilla. Reserved for those who know.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001008001, "title": "3ml", "price": "17.00" },
+        { "id": 60001008002, "title": "5ml", "price": "30.00" },
+        { "id": 60001008003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000009,
+      "title": "California Dream",
+      "handle": "california-dream",
+      "vendor": "Maison Margiela",
+      "body_html": "<p>The golden state, bottled. California Dream is a Replica scent that captures the warm, hazy bliss of a Pacific sunset — bergamot, ylang ylang, and cedarwood over a musk-drenched base.</p>",
+      "price": "13.00",
+      "variants": [
+        { "id": 60001009001, "title": "3ml", "price": "13.00" },
+        { "id": 60001009002, "title": "5ml", "price": "22.00" },
+        { "id": 60001009003, "title": "10ml", "price": "38.00" }
+      ]
+    },
+    {
+      "id": 10300001000010,
+      "title": "Castley",
+      "handle": "castley",
+      "vendor": "Parfums de Marly",
+      "body_html": "<p>Crisp masculinity, perfectly balanced. Castley opens with bergamot and black pepper, then settles into a warm heart of violet and sandalwood. A fragrance for those who command a room quietly.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001010001, "title": "3ml", "price": "16.00" },
+        { "id": 60001010002, "title": "5ml", "price": "28.00" },
+        { "id": 60001010003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000011,
+      "title": "City of Stars",
+      "handle": "city-of-stars",
+      "vendor": "Kilian Paris",
+      "body_html": "<p>A nocturnal amber. City of Stars is an ode to ambition under the night sky — a warm, golden fragrance of honey, sandalwood, and smoked papyrus that smolders on the skin for hours.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001011001, "title": "3ml", "price": "16.00" },
+        { "id": 60001011002, "title": "5ml", "price": "28.00" },
+        { "id": 60001011003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000012,
+      "title": "Contralto",
+      "handle": "contralto",
+      "vendor": "Orto Parisi",
+      "body_html": "<p>The deep note. Contralto is a raw, animalic fragrance from Alessandro Gualtieri — incense, benzoin, and a provocative labdanum base that speaks to the primal and the sacred simultaneously.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001012001, "title": "3ml", "price": "15.00" },
+        { "id": 60001012002, "title": "5ml", "price": "26.00" },
+        { "id": 60001012003, "title": "10ml", "price": "45.00" }
+      ]
+    },
+    {
+      "id": 10300001000013,
+      "title": "Decision",
+      "handle": "decision",
+      "vendor": "Imaginary Authors",
+      "body_html": "<p>Fiction in a bottle. Decision is a literary fragrance — beeswax, amber, and a whisper of smoke that reads like the last page of a great novel. Bold enough to finish the chapter.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 60001013001, "title": "3ml", "price": "14.00" },
+        { "id": 60001013002, "title": "5ml", "price": "24.00" },
+        { "id": 60001013003, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10300001000014,
+      "title": "French Defense",
+      "handle": "french-defense",
+      "vendor": "Imaginary Authors",
+      "body_html": "<p>The cerebral opening move. French Defense is a precise, woody fragrance — vetiver, tobacco, and leather playing a long game on the skin. Deliberate, calculated, and entirely distinctive.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 60001014001, "title": "3ml", "price": "14.00" },
+        { "id": 60001014002, "title": "5ml", "price": "24.00" },
+        { "id": 60001014003, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10300001000015,
+      "title": "Frenchy Lavande",
+      "handle": "frenchy-lavande",
+      "vendor": "Maison Crivelli",
+      "body_html": "<p>Lavender, elevated. Frenchy Lavande takes the most classic of French aromatic ingredients and transforms it — pairing Provençal lavender with smoky vetiver and a rich amber base that defies expectation.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001015001, "title": "3ml", "price": "15.00" },
+        { "id": 60001015002, "title": "5ml", "price": "26.00" },
+        { "id": 60001015003, "title": "10ml", "price": "45.00" }
+      ]
+    },
+    {
+      "id": 10300001000016,
+      "title": "Gentle Fluidity Silver",
+      "handle": "gentle-fluidity-silver",
+      "vendor": "Maison Francis Kurkdjian",
+      "body_html": "<p>The fluid boundary between masculine and feminine. Gentle Fluidity Silver opens on juniper berry and nutmeg, with a heart of musks and ambers — a fragrance without borders, only beauty.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001016001, "title": "3ml", "price": "17.00" },
+        { "id": 60001016002, "title": "5ml", "price": "30.00" },
+        { "id": 60001016003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000017,
+      "title": "Herbes Troublantes",
+      "handle": "herbes-troublantes",
+      "vendor": "L'Artisan Parfumeur",
+      "body_html": "<p>Wildness captured. Herbes Troublantes is an aromatic, slightly medicinal green fragrance — a walk through an overgrown field at dusk, with notes of sage, vetiver, and a damp earthiness.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 60001017001, "title": "3ml", "price": "14.00" },
+        { "id": 60001017002, "title": "5ml", "price": "24.00" },
+        { "id": 60001017003, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10300001000018,
+      "title": "Imagination",
+      "handle": "imagination",
+      "vendor": "Louis Vuitton",
+      "body_html": "<p>A voyage of the senses. Imagination by Louis Vuitton is a crisp, refreshing fragrance that captures the spirit of travel — cedar, petitgrain, and grapefruit in perfect, effortless balance.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001018001, "title": "3ml", "price": "17.00" },
+        { "id": 60001018002, "title": "5ml", "price": "30.00" },
+        { "id": 60001018003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000019,
+      "title": "Ingenious Ginger",
+      "handle": "ingenious-ginger",
+      "vendor": "Maison Crivelli",
+      "body_html": "<p>A spice that surprises. Ingenious Ginger is a bright, exhilarating fragrance — raw ginger root, bergamot, and a warm musks base create an unexpected freshness that lasts long into the evening.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001019001, "title": "3ml", "price": "15.00" },
+        { "id": 60001019002, "title": "5ml", "price": "26.00" },
+        { "id": 60001019003, "title": "10ml", "price": "45.00" }
+      ]
+    },
+    {
+      "id": 10300001000020,
+      "title": "Layton",
+      "handle": "layton",
+      "vendor": "Parfums de Marly",
+      "body_html": "<p>The signature of distinction. Layton is Parfums de Marly's most iconic fragrance — a warm, apple-tinged bergamot opening over a heart of geranium and lavender, resting on vanilla and sandalwood. Universally beloved.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001020001, "title": "3ml", "price": "16.00" },
+        { "id": 60001020002, "title": "5ml", "price": "28.00" },
+        { "id": 60001020003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000021,
+      "title": "L'Immensite",
+      "handle": "limmensite",
+      "vendor": "Louis Vuitton",
+      "body_html": "<p>The immensity of the sea. L'Immensite opens with bergamot and ginger, evolves through cardamom and coriander, and dries to a driftwood and ambergris base that evokes endless blue horizons.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001021001, "title": "3ml", "price": "17.00" },
+        { "id": 60001021002, "title": "5ml", "price": "30.00" },
+        { "id": 60001021003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000022,
+      "title": "Malibu Party in the Bay",
+      "handle": "malibu-party-in-the-bay",
+      "vendor": "Vilhelm Parfumerie",
+      "body_html": "<p>Sunset on the Pacific. Malibu Party in the Bay is a bright, fruity-floral celebration — sea salt, peach, and jasmine wrapped in warm musks. Summer in a bottle. Never a bad time to wear it.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 60001022001, "title": "3ml", "price": "14.00" },
+        { "id": 60001022002, "title": "5ml", "price": "24.00" },
+        { "id": 60001022003, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10300001000023,
+      "title": "Matcha 26",
+      "handle": "matcha-26",
+      "vendor": "Le Labo",
+      "body_html": "<p>The meditative green. Matcha 26 captures the ritual of a quiet morning tea — a cool, slightly bitter green tea accord softened by cedarwood and white musk. Mindful, unhurried, and quietly radical.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001023001, "title": "3ml", "price": "15.00" },
+        { "id": 60001023002, "title": "5ml", "price": "26.00" },
+        { "id": 60001023003, "title": "10ml", "price": "45.00" }
+      ]
+    },
+    {
+      "id": 10300001000024,
+      "title": "Météore",
+      "handle": "meteore",
+      "vendor": "Louis Vuitton",
+      "body_html": "<p>The freshness of the cosmos. Météore is a crisp, bright fragrance — white tea, bergamot, and citrus notes fall like a meteor shower, leaving a trail of white musks and light wood on the skin.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001024001, "title": "3ml", "price": "17.00" },
+        { "id": 60001024002, "title": "5ml", "price": "30.00" },
+        { "id": 60001024003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000025,
+      "title": "Mojave Ghost Absolu",
+      "handle": "mohave-ghost-absolu",
+      "vendor": "Byredo",
+      "body_html": "<p>The desert, intensified. Mojave Ghost Absolu deepens the iconic original — magnolia, ambrette, and cedarwood amplified with a lush, powdery density. Silence made tangible on the skin.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001025001, "title": "3ml", "price": "16.00" },
+        { "id": 60001025002, "title": "5ml", "price": "28.00" },
+        { "id": 60001025003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000026,
+      "title": "Musc Outreblanc",
+      "handle": "musc-outreblanc",
+      "vendor": "Serge Lutens",
+      "body_html": "<p>White beyond white. Musc Outreblanc is an extreme musk — a study in purity and skin-scent sensuality. Iris, ambrette, and a layered synthetic musk accord that becomes you.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001026001, "title": "3ml", "price": "15.00" },
+        { "id": 60001026002, "title": "5ml", "price": "26.00" },
+        { "id": 60001026003, "title": "10ml", "price": "46.00" }
+      ]
+    },
+    {
+      "id": 10300001000027,
+      "title": "Neptune's Trident",
+      "handle": "neptunes-trident",
+      "vendor": "Penhaligon's",
+      "body_html": "<p>Rule the deep. Neptune's Trident is a bold marine-woody fragrance — sea spray, driftwood, and black pepper form an opening salvo, with amber and musks providing a powerful, lasting trail.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001027001, "title": "3ml", "price": "15.00" },
+        { "id": 60001027002, "title": "5ml", "price": "26.00" },
+        { "id": 60001027003, "title": "10ml", "price": "45.00" }
+      ]
+    },
+    {
+      "id": 10300001000028,
+      "title": "Néroli Outrenoir",
+      "handle": "neroli-outrenoir-guerlain-paris",
+      "vendor": "Guerlain",
+      "body_html": "<p>White flowers at midnight. Néroli Outrenoir from Guerlain's L'Art & La Matière collection pairs the luminous brightness of neroli with deep oud and woods — a fragrance that blooms in darkness.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001028001, "title": "3ml", "price": "17.00" },
+        { "id": 60001028002, "title": "5ml", "price": "30.00" },
+        { "id": 60001028003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000029,
+      "title": "Noir 29",
+      "handle": "noir-29",
+      "vendor": "Le Labo",
+      "body_html": "<p>Smoky, woody, provocative. Noir 29 is a bold statement fragrance — black tea, labdanum, and woods create a dark, resinous scent with real staying power. For those who leave an impression.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001029001, "title": "3ml", "price": "15.00" },
+        { "id": 60001029002, "title": "5ml", "price": "26.00" },
+        { "id": 60001029003, "title": "10ml", "price": "45.00" }
+      ]
+    },
+    {
+      "id": 10300001000030,
+      "title": "Orage",
+      "handle": "orage",
+      "vendor": "Maison Margiela",
+      "body_html": "<p>After the storm. Orage is a Replica fragrance that bottles the charged, petrichor-laced air just after a summer downpour — vetiver, neroli, and rain on warm pavement. Evocative and true.</p>",
+      "price": "13.00",
+      "variants": [
+        { "id": 60001030001, "title": "3ml", "price": "13.00" },
+        { "id": 60001030002, "title": "5ml", "price": "22.00" },
+        { "id": 60001030003, "title": "10ml", "price": "38.00" }
+      ]
+    },
+    {
+      "id": 10300001000031,
+      "title": "Outlands",
+      "handle": "outlands",
+      "vendor": "Imaginary Authors",
+      "body_html": "<p>Wide skies and open plains. Outlands is a sweeping, atmospheric fragrance — sage, juniper, and raw leather conjure the American West in all its vastness. An invitation to get lost.</p>",
+      "price": "14.00",
+      "variants": [
+        { "id": 60001031001, "title": "3ml", "price": "14.00" },
+        { "id": 60001031002, "title": "5ml", "price": "24.00" },
+        { "id": 60001031003, "title": "10ml", "price": "42.00" }
+      ]
+    },
+    {
+      "id": 10300001000032,
+      "title": "Pacific Chill",
+      "handle": "pacific-chill",
+      "vendor": "Maison Margiela",
+      "body_html": "<p>West Coast ease. Pacific Chill is a Replica that captures the effortless cool of a California afternoon — sea salt, cucumber water, and a soft white cedar base. Laid-back luxury.</p>",
+      "price": "13.00",
+      "variants": [
+        { "id": 60001032001, "title": "3ml", "price": "13.00" },
+        { "id": 60001032002, "title": "5ml", "price": "22.00" },
+        { "id": 60001032003, "title": "10ml", "price": "38.00" }
+      ]
+    },
+    {
+      "id": 10300001000033,
+      "title": "Pacific Rock Moss",
+      "handle": "pacific-rock-moss",
+      "vendor": "Byredo",
+      "body_html": "<p>Coastal mineral depth. Pacific Rock Moss is a rugged, earthy fragrance — rock moss, bergamot, and styrax create a rich, green-woody composition that feels like standing at the ocean's edge at dawn.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001033001, "title": "3ml", "price": "15.00" },
+        { "id": 60001033002, "title": "5ml", "price": "26.00" },
+        { "id": 60001033003, "title": "10ml", "price": "46.00" }
+      ]
+    },
+    {
+      "id": 10300001000034,
+      "title": "Percival",
+      "handle": "percival",
+      "vendor": "Parfums de Marly",
+      "body_html": "<p>Knightly freshness. Percival is a crisp, clean signature — bergamot, violet, and a heart of lavender and rosemary over a sandalwood and musk base. Timeless without being predictable.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001034001, "title": "3ml", "price": "16.00" },
+        { "id": 60001034002, "title": "5ml", "price": "28.00" },
+        { "id": 60001034003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000035,
+      "title": "Sedley",
+      "handle": "sedley",
+      "vendor": "Parfums de Marly",
+      "body_html": "<p>English countryside in a bottle. Sedley is a fresh, aromatic fragrance — green peppercorn, lavender, and spearmint rest on a bed of sandalwood and cedarwood. Clean, distinguished, memorable.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001035001, "title": "3ml", "price": "16.00" },
+        { "id": 60001035002, "title": "5ml", "price": "28.00" },
+        { "id": 60001035003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000036,
+      "title": "Spiritueuse Double Vanille",
+      "handle": "spiritueuse-double-vanille-guerlain-paris",
+      "vendor": "Guerlain",
+      "body_html": "<p>Vanilla squared. Spiritueuse Double Vanille from Guerlain's L'Art & La Matière is a luscious, rum-laced vanilla — Bourbon vanilla, vanilla absolute, and a warm resin base. The definitive vanilla fragrance.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001036001, "title": "3ml", "price": "17.00" },
+        { "id": 60001036002, "title": "5ml", "price": "30.00" },
+        { "id": 60001036003, "title": "10ml", "price": "55.00" }
+      ]
+    },
+    {
+      "id": 10300001000037,
+      "title": "Starlight",
+      "handle": "starlight",
+      "vendor": "Memo Paris",
+      "body_html": "<p>Above the clouds. Starlight is a delicate, powdery floral — iris, white musk, and a luminous aldehydic accord that feels as though it were designed under open skies at midnight. Refined and unforgettable.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001037001, "title": "3ml", "price": "15.00" },
+        { "id": 60001037002, "title": "5ml", "price": "26.00" },
+        { "id": 60001037003, "title": "10ml", "price": "46.00" }
+      ]
+    },
+    {
+      "id": 10300001000038,
+      "title": "Symphony",
+      "handle": "symphony",
+      "vendor": "Initio Parfums Privés",
+      "body_html": "<p>Harmonious complexity. Symphony is a rich floral-woody fragrance — bergamot and pink pepper open to a heart of jasmine and rose, supported by a base of sandalwood, vetiver, and musk. A complete composition.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001038001, "title": "3ml", "price": "15.00" },
+        { "id": 60001038002, "title": "5ml", "price": "27.00" },
+        { "id": 60001038003, "title": "10ml", "price": "48.00" }
+      ]
+    },
+    {
+      "id": 10300001000039,
+      "title": "Torino 21",
+      "handle": "torino-21",
+      "vendor": "Le Labo",
+      "body_html": "<p>The hidden city exclusive. Torino 21 is a complex leather-floral fragrance created for Turin — rose, blackcurrant, and a smoky leather accord that feels like a perfectly cut Italian suit. Exclusive by design.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001039001, "title": "3ml", "price": "16.00" },
+        { "id": 60001039002, "title": "5ml", "price": "28.00" },
+        { "id": 60001039003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000040,
+      "title": "Tuxedo",
+      "handle": "tuxedo",
+      "vendor": "Yves Saint Laurent",
+      "body_html": "<p>Dressed to the nines. Tuxedo is a rich, warm amber-woody fragrance — iris root, tonka bean, and vanilla are wrapped in a labdanum and cedarwood base. Effortlessly elegant, undeniably memorable.</p>",
+      "price": "16.00",
+      "variants": [
+        { "id": 60001040001, "title": "3ml", "price": "16.00" },
+        { "id": 60001040002, "title": "5ml", "price": "28.00" },
+        { "id": 60001040003, "title": "10ml", "price": "50.00" }
+      ]
+    },
+    {
+      "id": 10300001000041,
+      "title": "Vibrato",
+      "handle": "vibrato",
+      "vendor": "Matière Première",
+      "body_html": "<p>The resonant note. Vibrato is a bold, woody-aromatic fragrance — clary sage, cedarwood, and a deep musks accord that vibrates on the skin long after the top notes fade. For those who are felt before they're seen.</p>",
+      "price": "15.00",
+      "variants": [
+        { "id": 60001041001, "title": "3ml", "price": "15.00" },
+        { "id": 60001041002, "title": "5ml", "price": "26.00" },
+        { "id": 60001041003, "title": "10ml", "price": "46.00" }
+      ]
+    },
+    {
+      "id": 10300001000042,
+      "title": "Virgin Island Water",
+      "handle": "virgin-island-water",
+      "vendor": "Creed",
+      "body_html": "<p>Paradise found. Virgin Island Water is Creed's summer masterpiece — a blend of coconut, rum, lime, and bergamot that captures the freedom of a Caribbean day in full sail. Sun-drenched, joyful, unforgettable.</p>",
+      "price": "17.00",
+      "variants": [
+        { "id": 60001042001, "title": "3ml", "price": "17.00" },
+        { "id": 60001042002, "title": "5ml", "price": "30.00" },
+        { "id": 60001042003, "title": "10ml", "price": "55.00" }
+      ]
+    }
+  ]
+}

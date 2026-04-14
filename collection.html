@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop all premium fragrance decants at Nathan's Decants.">
+    <title>All Products — Nathan's Decants</title>
+    <link rel="stylesheet" href="assets/theme.css">
+    <style>
+        .collection-hero {
+            padding: var(--space-2xl) 0 var(--space-xl);
+            background: var(--canvas);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: var(--space-xl);
+        }
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg) var(--space-md);
+        }
+        @media (max-width: 1024px) {
+            .collection-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .collection-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        /* Skeleton loading grid */
+        .skeleton-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-lg) var(--space-md);
+        }
+        @media (max-width: 1024px) {
+            .skeleton-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .skeleton-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-orb"></div>
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+        <div class="header-pill">
+            <a href="index.html" class="logo">Nathan's <em>Decants</em></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="collection.html" class="nav-link active">Shop</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#" id="searchTrigger" aria-label="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+                </a>
+                <a href="cart.html" aria-label="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+        <a href="collection.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search fragrances">
+        <div class="search-box">
+            <div class="search-input-row">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
+                <input type="search" id="searchInput" placeholder="Search fragrances, houses..." autocomplete="off">
+                <button id="searchClose" aria-label="Close search">&times;</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    </div>
+
+    <div class="collection-hero">
+        <div class="container">
+            <span class="eyebrow" style="margin-bottom: 1rem;">Fragrance Library</span>
+            <h1 class="display-xl">All Products</h1>
+            <p class="body-text" style="margin-top: 1.5rem;">Explore our curated selection of 49 high-end fragrance decants. Sourced authentically, bottled with care.</p>
+        </div>
+    </div>
+
+    <main id="main" class="container section-gap">
+        <!-- Skeleton shown while loading -->
+        <div id="skeletonGrid" class="skeleton-grid">
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+            <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton skeleton-line"></div><div class="skeleton skeleton-line--short"></div></div>
+        </div>
+        <div id="productGrid" class="collection-grid stagger-children" style="display:none;"></div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Nathan's <em style="font-style:italic; color: var(--accent);">Decants</em></h3>
+                    <p>Authentic fragrance discovery. Experience luxury, one spray at a time.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="collection.html">All Products</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nathan's Decants. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/cart.js"></script>
+    <script>
+    async function loadProducts() {
+        try {
+            const response = await fetch('data/products.json');
+            const data = await response.json();
+            const grid = document.getElementById('productGrid');
+            const skeleton = document.getElementById('skeletonGrid');
+
+            data.products.forEach((product) => {
+                const handle = product.handle;
+                const ext = Cart.getImageExt(handle);
+                const image = `assets/products/${handle}_0.${ext}`;
+                const price = product.variants[0].price;
+
+                const card = document.createElement('a');
+                card.href = `product.html?handle=${handle}`;
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-card__image">
+                        <img src="${image}" alt="${product.title}" loading="lazy"
+                            onerror="this.style.opacity='0'">
+                        <button class="product-card__quick-add" aria-label="Quick add ${product.title} to bag">+</button>
+                    </div>
+                    <div class="product-card__info">
+                        <span class="product-card__vendor">${product.vendor || ''}</span>
+                        <h3 class="product-card__title">${product.title}</h3>
+                        <p class="product-card__price">From $${price}</p>
+                    </div>
+                `;
+
+                // Wire quick-add
+                const btn = card.querySelector('.product-card__quick-add');
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    Cart.add(product, product.variants[0]);
+                });
+
+                grid.appendChild(card);
+            });
+
+            // Swap skeleton → real grid
+            skeleton.remove();
+            grid.style.display = '';
+
+            // Trigger reveal
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05 });
+            observer.observe(grid);
+
+        } catch (error) {
+            document.getElementById('skeletonGrid').innerHTML =
+                '<p style="color:var(--ink-secondary); font-family:var(--font-mono); font-size:0.8rem;">Unable to load products. Please refresh.</p>';
+            console.error('Error loading products:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadProducts();
+        document.getElementById('searchClose')?.addEventListener('click', () => {
+            document.getElementById('searchOverlay').classList.remove('active');
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Experience Luxury. Curate Your Collection.",
+        "subheading": "Premium Fragrance Decants",
+        "button_label": "Shop The Collection"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Bestsellers",
+        "subtitle": "Most loved by our community.",
+        "products_to_show": 4
+      }
+    }
+  ,
+    "footer": {
+      "type": "footer",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collection"
+  ]
+}

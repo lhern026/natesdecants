@@ -1,0 +1,26 @@
+{
+  "project": "Nathan's Decants Redesign",
+  "archetype": "Editorial Luxury",
+  "applied_skills": [
+    {
+      "skill": "Variance",
+      "implementation": "Bento asymmetric product grid in index.html and sticky-split in product.html",
+      "score": 8
+    },
+    {
+      "skill": "Motion",
+      "implementation": "IntersectionObserver reveals in theme.js and spring-eased hover haptics",
+      "score": 6
+    },
+    {
+      "skill": "Typography",
+      "implementation": "Triple-pairing of Serif/Grotesque/Mono",
+      "score": 10
+    },
+    {
+      "skill": "Density",
+      "implementation": "Section gap spacing of 6rem and constrained 65ch line lengths",
+      "score": 4
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+<section class="product-main container" data-section="{{ section.id }}">
+  <div class="product-media reveal">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 1200 | image_tag: 
+         loading: 'eager',
+         id: 'main-product-image',
+         alt: product.title
+      }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag }}
+    {%- endif -%}
+  </div>
+
+  <div class="product-details reveal">
+    {% if product.vendor %}
+      <span class="product-vendor">{{ product.vendor }}</span>
+    {% endif %}
+    
+    <h1 class="product-title display-md">
+      {%- assign title_parts = product.title | split: ' ' -%}
+      {%- for part in title_parts -%}
+        {%- if forloop.last -%}
+          <em>{{ part }}</em>
+        {%- else -%}
+          {{ part }} 
+        {%- endif -%}
+      {%- endfor -%}
+    </h1>
+    
+    <div class="product-price" id="Price-{{ section.id }}">
+      {{ product.selected_or_first_available_variant.price | money }}
+    </div>
+
+    <div class="product-description body-text">
+      {{ product.description }}
+    </div>
+
+    {%- form 'product', product, id: 'product-form' -%}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      
+      {%- unless product.has_only_default_variant -%}
+        <div class="option-wrap">
+          <span class="option-label">Select Discovery Size</span>
+          <div class="size-picker">
+            {%- for variant in product.variants -%}
+              <div class="size-option {% if variant == product.selected_or_first_available_variant %}active{% endif %}" 
+                   data-variant-id="{{ variant.id }}"
+                   data-price="{{ variant.price | money }}">
+                {{ variant.title }}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endunless -%}
+
+      <div class="product-actions">
+        <button type="submit" name="add" class="add-to-cart" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}
+            Add to Bag — <span id="price-target">{{ product.selected_or_first_available_variant.price | money }}</span>
+          {% else %}
+            Sold Out
+          {% endif %}
+        </button>
+      </div>
+    {%- endform -%}
+
+    <div class="product-features">
+      <div class="feature-item">
+        <h4>100% Authentic</h4>
+        <p>Decanted directly from the original manufacturer bottle.</p>
+      </div>
+      <div class="feature-item">
+        <h4>Discovery Sizing</h4>
+        <p>Perfect for testing before committing to a full bottle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "This section powers the main product page layout."
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const sizeOptions = document.querySelectorAll('.size-option');
+    const variantInput = document.querySelector('input[name="id"]');
+    const priceTarget = document.getElementById('price-target');
+
+    sizeOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        sizeOptions.forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        
+        const variantId = this.dataset.variantId;
+        const price = this.dataset.price;
+        
+        variantInput.value = variantId;
+        if(priceTarget) priceTarget.innerText = price;
+      });
+    });
+  });
+</script>

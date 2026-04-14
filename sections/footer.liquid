@@ -1,0 +1,60 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Nathan's <em style="font-style:italic; color: var(--accent);">Decants</em></h3>
+        <p>Authentic fragrance discovery from the world's most prestigious houses. Experience luxury, one spray at a time.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% else %}
+            <li><a href="/collections/all">All Products</a></li>
+            <li><a href="/collections/new-arrivals">New Arrivals</a></li>
+            <li><a href="/collections/bestsellers">Bestsellers</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="/pages/about">About Us</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+          <li><a href="/policies/shipping-policy">Shipping</a></li>
+          <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ 'now' | date: "%Y" }} Nathan's Decants. All rights reserved.</p>
+      <div class="footer-socials">
+        {% if section.settings.instagram_url != blank %}
+          <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
+        {% endif %}
+        {% if section.settings.tiktok_url != blank %}
+          <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener">TikTok</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    }
+  ]
+}
+{% endschema %}

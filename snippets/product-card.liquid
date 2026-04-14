@@ -1,0 +1,121 @@
+<div class="product-card">
+  <div class="product-card__image">
+    {% if product.available == false %}
+      <span class="product-card__badge">Sold Out</span>
+    {% endif %}
+    
+    <a href="{{ product.url }}">
+      {% if product.featured_image != blank %}
+        {{ product.featured_image | image_url: width: 800 | image_tag: 
+          loading: 'lazy',
+          class: 'product-card__img',
+          alt: product.title
+        }}
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </a>
+    
+    <button class="product-card__quick-add" 
+            aria-label="Add to Bag"
+            onclick="location.href='{{ product.url }}'">
+      +
+    </button>
+  </div>
+  
+  <div class="product-card__info">
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    <p class="product-card__price">
+      {{ product.price | money_without_trailing_zeros }}
+    </p>
+  </div>
+</div>
+
+{% style %}
+  .product-card {
+    position: relative;
+    group: hover;
+  }
+
+  .product-card__image {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: #fbf9f6;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .product-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 2rem;
+    transition: transform 0.8s var(--ease-out);
+  }
+
+  .product-card:hover .product-card__img {
+    transform: scale(1.05);
+  }
+
+  .product-card__badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--canvas);
+    padding: 0.25rem 0.5rem;
+    z-index: 2;
+  }
+
+  .product-card__quick-add {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--canvas);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s var(--ease-out);
+    z-index: 3;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .product-card:hover .product-card__quick-add {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .product-card__info {
+    margin-top: 1.5rem;
+  }
+
+  .product-card__title {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-card__title a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .product-card__price {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    opacity: 0.5;
+  }
+{% endstyle %}

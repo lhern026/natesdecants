@@ -1,0 +1,92 @@
+<section class="container section-gap-lg featured-section reveal">
+  <div class="section-header">
+    <div class="section-header-left">
+      {% if section.settings.subheading != blank %}
+        <span class="eyebrow" style="margin-bottom: 0.5rem;">{{ section.settings.subheading }}</span>
+      {% endif %}
+      <h2 class="display-lg">{{ section.settings.title }}</h2>
+    </div>
+    {% if section.settings.collection != blank %}
+      <a href="{{ section.settings.collection.url }}" class="btn btn--ghost">View all →</a>
+    {% endif %}
+  </div>
+
+  <div class="product-grid stagger-children">
+    {% for product in section.settings.collection.products limit: section.settings.limit %}
+      {% render 'product-card', product: product %}
+    {% else %}
+      {% for i in (1..3) %}
+        <div class="product-card">
+          <div class="product-card__image">
+            {{ 'product-' | append: i | placeholder_svg_tag }}
+          </div>
+          <div class="product-card__info">
+            <h3 class="product-card__title">Example Product</h3>
+            <p class="product-card__price">$0.00</p>
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Collection"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Curated Selection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 3,
+      "label": "Product Limit"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Collection Grid"
+    }
+  ]
+}
+{% endschema %}
+
+{% style %}
+  .product-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-auto-flow: dense;
+    gap: var(--space-md);
+  }
+
+  .product-grid > :first-child {
+    grid-row: span 2;
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+    .product-grid > :first-child {
+      grid-row: span 1;
+    }
+  }
+{% endstyle %}

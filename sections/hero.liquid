@@ -1,0 +1,88 @@
+<section class="hero">
+  <div class="hero-text">
+    {% if section.settings.eyebrow != blank %}
+      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+    {% endif %}
+    <h1 class="hero-title">{{ section.settings.heading }}</h1>
+    {% if section.settings.subheading != blank %}
+      <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+    {% endif %}
+    <div class="hero-meta">
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="btn btn--primary">
+          {{ section.settings.button_label }}
+          <span class="btn-arrow">→</span>
+        </a>
+      {% endif %}
+      {% if section.settings.secondary_label != blank %}
+        <a href="{{ section.settings.secondary_link }}" class="btn btn--ghost">{{ section.settings.secondary_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="hero-image">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}">
+    {% else %}
+      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=85&w=1200" alt="Luxury fragrances">
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero — Asymmetric Split",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Est. 2024 — Premium Decants"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Scent<br><em>without</em><br>the splurge.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discovery-sized decants from Maison Francis Kurkdjian, Tom Ford, Initio, and 40+ other houses. Authentic. Affordable. Curated."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Primary Button Label",
+      "default": "Explore Collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary Link Label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary Link URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero — Asymmetric Split"
+    }
+  ]
+}
+{% endschema %}
