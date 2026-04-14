@@ -127,12 +127,32 @@ const Cart = (() => {
       } catch { /* silent */ }
     }
 
+    const TRENDING = ['Creed', 'Tom Ford', 'Kilian', 'Xerjoff', 'Maison Margiela', 'Parfums de Marly', 'Amouage'];
+
+    function renderTrending() {
+      results.innerHTML = `
+        <div class="search-trending">
+          <p class="search-trending-label">Trending Houses</p>
+          <div class="search-trending-pills">
+            ${TRENDING.map(t => `<button class="search-trending-pill" data-query="${t}">${t}</button>`).join('')}
+          </div>
+        </div>
+      `;
+      results.querySelectorAll('.search-trending-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          input.value = pill.dataset.query;
+          renderResults(pill.dataset.query);
+          input.focus();
+        });
+      });
+    }
+
     function renderResults(query) {
       const q = query.trim().toLowerCase();
       results.innerHTML = '';
 
       if (!q) {
-        results.innerHTML = '<p class="search-hint">Start typing to search...</p>';
+        renderTrending();
         return;
       }
 
@@ -142,7 +162,7 @@ const Cart = (() => {
       );
 
       if (!matches.length) {
-        results.innerHTML = `<p class="search-hint">No results for "<em>${query}</em>"</p>`;
+        results.innerHTML = `<p class="search-hint">No results for "<strong>${q}</strong>"</p>`;
         return;
       }
 
@@ -151,13 +171,16 @@ const Cart = (() => {
         const a = document.createElement('a');
         a.href = `product.html?handle=${p.handle}`;
         a.className = 'search-result-item';
+        // Sanitize display: show escaped title/vendor
+        const safeTitle = p.title.replace(/</g, '&lt;');
+        const safeVendor = (p.vendor || '').replace(/</g, '&lt;');
         a.innerHTML = `
           <div class="search-result-img">
-            <img src="assets/products/${p.handle}_0.${ext}" alt="${p.title}" onerror="this.style.display='none'">
+            <img src="assets/products/${p.handle}_0.${ext}" alt="${safeTitle}" onerror="this.style.display='none'">
           </div>
           <div class="search-result-info">
-            <span class="search-result-vendor">${p.vendor || ''}</span>
-            <span class="search-result-title">${p.title}</span>
+            <span class="search-result-vendor">${safeVendor}</span>
+            <span class="search-result-title">${safeTitle}</span>
             <span class="search-result-price">From $${p.variants[0].price}</span>
           </div>
         `;
@@ -169,8 +192,8 @@ const Cart = (() => {
       e.preventDefault();
       await fetchProducts();
       overlay.classList.add('active');
-      setTimeout(() => input.focus(), 50);
-      renderResults('');
+      setTimeout(() => input.focus(), 60);
+      renderTrending();
     });
 
     overlay.addEventListener('click', (e) => {
@@ -220,6 +243,158 @@ const Cart = (() => {
     document.querySelectorAll('.reveal, .stagger-children').forEach(el => obs.observe(el));
   }
 
+  // ── Cart Drawer ─────────────────────────────────────────
+  function initCartDrawer() {
+    // Inject backdrop
+    const backdrop = document.createElement('div');
+    backdrop.className = 'cart-drawer-backdrop';
+    backdrop.id = 'cartDrawerBackdrop';
+    document.body.appendChild(backdrop);
+
+    // Inject drawer shell
+    const drawer = document.createElement('div');
+    drawer.className = 'cart-drawer';
+    drawer.id = 'cartDrawer';
+    drawer.setAttribute('role', 'dialog');
+    drawer.setAttribute('aria-modal', 'true');
+    drawer.setAttribute('aria-label', 'Your bag');
+    drawer.innerHTML = `
+      <div class="cart-drawer-header">
+        <div class="cart-drawer-header-left">
+          <span class="cart-drawer-title">Your Bag</span>
+          <span class="cart-drawer-count" id="drawerCount"></span>
+        </div>
+        <button class="cart-drawer-close" id="cartDrawerClose" aria-label="Close bag">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="cart-drawer-body" id="cartDrawerBody"></div>
+      <div class="cart-drawer-footer" id="cartDrawerFooter"></div>
+    `;
+    document.body.appendChild(drawer);
+
+    function openDrawer() {
+      renderDrawer();
+      backdrop.classList.add('active');
+      drawer.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      backdrop.classList.remove('active');
+      drawer.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function renderDrawer() {
+      const items = get();
+      const body  = document.getElementById('cartDrawerBody');
+      const footer = document.getElementById('cartDrawerFooter');
+      const drawerCount = document.getElementById('drawerCount');
+      const n = count();
+
+      drawerCount.textContent = n > 0 ? `(${n})` : '';
+
+      if (!items.length) {
+        body.innerHTML = `
+          <div class="cart-drawer-empty">
+            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <h3>Your bag is empty</h3>
+            <p>Discover your next signature scent.</p>
+            <a href="collection.html" class="btn btn--primary" style="margin-top:1rem;">
+              Explore Collection <span class="btn-arrow">→</span>
+            </a>
+          </div>
+        `;
+        footer.innerHTML = '';
+        return;
+      }
+
+      body.innerHTML = '';
+      items.forEach(item => {
+        const ext = getImageExt(item.handle);
+        const safeTitle   = item.title.replace(/</g, '&lt;');
+        const safeVendor  = item.vendor.replace(/</g, '&lt;');
+        const safeVariant = item.variant.replace(/</g, '&lt;');
+
+        const row = document.createElement('div');
+        row.className = 'cart-drawer-item';
+        row.innerHTML = `
+          <div class="cart-drawer-item-img">
+            <img src="assets/products/${item.handle}_0.${ext}" alt="${safeTitle}" onerror="this.style.display='none'">
+          </div>
+          <div class="cart-drawer-item-info">
+            <span class="cart-drawer-item-vendor">${safeVendor}</span>
+            <span class="cart-drawer-item-title">${safeTitle}</span>
+            <span class="cart-drawer-item-variant">${safeVariant}</span>
+            <div class="cart-drawer-item-controls">
+              <button class="cart-drawer-qty-btn" data-key="${item.key}" data-qty="${item.qty - 1}" aria-label="Decrease quantity">−</button>
+              <span class="cart-drawer-qty-display">${item.qty}</span>
+              <button class="cart-drawer-qty-btn" data-key="${item.key}" data-qty="${item.qty + 1}" aria-label="Increase quantity">+</button>
+              <button class="cart-drawer-remove" data-key="${item.key}">Remove</button>
+            </div>
+          </div>
+          <div class="cart-drawer-item-price">$${(item.price * item.qty).toFixed(2)}</div>
+        `;
+        body.appendChild(row);
+      });
+
+      // Wire qty/remove via delegation
+      body.querySelectorAll('.cart-drawer-qty-btn').forEach(btn => {
+        btn.addEventListener('click', () => updateQty(btn.dataset.key, parseInt(btn.dataset.qty)));
+      });
+      body.querySelectorAll('.cart-drawer-remove').forEach(btn => {
+        btn.addEventListener('click', () => remove(btn.dataset.key));
+      });
+
+      const subtotal   = total();
+      const shipping   = subtotal >= 50 ? 0 : 5.99;
+      const orderTotal = subtotal + shipping;
+
+      footer.innerHTML = `
+        <div class="cart-drawer-summary">
+          <div class="cart-drawer-summary-row">
+            <span class="label">Subtotal</span>
+            <span>$${subtotal.toFixed(2)}</span>
+          </div>
+          <div class="cart-drawer-summary-row">
+            <span class="label">Shipping</span>
+            <span>${shipping === 0 ? 'Free' : '$' + shipping.toFixed(2)}</span>
+          </div>
+          <div class="cart-drawer-summary-row total">
+            <span>Total</span>
+            <span>$${orderTotal.toFixed(2)}</span>
+          </div>
+        </div>
+        <p class="cart-drawer-shipping-note">${shipping > 0 ? `Add $${(50 - subtotal).toFixed(2)} more for free shipping` : 'You qualify for free shipping ✓'}</p>
+        <button class="btn btn--primary" style="width:100%; justify-content:center;" onclick="alert('Checkout coming soon! This is a mock site.')">
+          Checkout — $${orderTotal.toFixed(2)} <span class="btn-arrow">→</span>
+        </button>
+        <a href="cart.html" class="cart-drawer-view-bag" data-no-drawer>View full bag</a>
+      `;
+    }
+
+    // Intercept all cart-page links to open drawer instead (use delegation so it catches dynamic elements)
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href="cart.html"]');
+      if (link && !link.hasAttribute('data-no-drawer')) {
+        e.preventDefault();
+        openDrawer();
+      }
+    });
+
+    document.getElementById('cartDrawerClose').addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && drawer.classList.contains('active')) closeDrawer();
+    });
+
+    // Re-render when cart changes and drawer is open
+    window.addEventListener('nd:cart-updated', () => {
+      if (drawer.classList.contains('active')) renderDrawer();
+    });
+  }
+
   // ── Header shrink ───────────────────────────────────────
   function initHeader() {
     const header = document.querySelector('.site-header');
@@ -251,6 +426,7 @@ const Cart = (() => {
     initReveal();
     initHeader();
     initSearch();
+    initCartDrawer();
   });
 
   return { get, add, remove, updateQty, total, count, clear, showToast, getImageExt };
