@@ -1,111 +1,118 @@
-<section class="product-main container" data-section="{{ section.id }}">
-  <div class="product-media reveal">
-    {%- if product.featured_image -%}
-      {{ product.featured_image | image_url: width: 1200 | image_tag: 
-         loading: 'eager',
-         id: 'main-product-image',
-         alt: product.title
-      }}
-    {%- else -%}
-      {{ 'product-1' | placeholder_svg_tag }}
-    {%- endif -%}
-  </div>
-
-  <div class="product-details reveal">
-    {% if product.vendor %}
-      <span class="product-vendor">{{ product.vendor }}</span>
-    {% endif %}
-    
-    <h1 class="product-title display-md">
-      {%- assign title_parts = product.title | split: ' ' -%}
-      {%- for part in title_parts -%}
-        {%- if forloop.last -%}
-          <em>{{ part }}</em>
+<section class="product-page container" id="productContent" data-section="{{ section.id }}">
+    <div class="product-gallery reveal">
+        {%- if product.featured_image -%}
+            {{ product.featured_image | image_url: width: 1200 | image_tag: 
+                loading: 'eager',
+                id: 'main-product-image',
+                alt: product.title,
+                onerror: "this.style.opacity='0.15'"
+            }}
         {%- else -%}
-          {{ part }} 
+            {{ 'product-1' | placeholder_svg_tag }}
         {%- endif -%}
-      {%- endfor -%}
-    </h1>
+    </div>
     
-    <div class="product-price" id="Price-{{ section.id }}">
-      {{ product.selected_or_first_available_variant.price | money }}
-    </div>
-
-    <div class="product-description body-text">
-      {{ product.description }}
-    </div>
-
-    {%- form 'product', product, id: 'product-form' -%}
-      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-      
-      {%- unless product.has_only_default_variant -%}
-        <div class="option-wrap">
-          <span class="option-label">Select Discovery Size</span>
-          <div class="size-picker">
-            {%- for variant in product.variants -%}
-              <div class="size-option {% if variant == product.selected_or_first_available_variant %}active{% endif %}" 
-                   data-variant-id="{{ variant.id }}"
-                   data-price="{{ variant.price | money }}">
-                {{ variant.title }}
-              </div>
+    <div class="product-details reveal">
+        <a href="{{ routes.collections_url }}" style="font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-tertiary);display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:var(--space-md);">
+            ← Collection
+        </a>
+        
+        <span class="vendor-label">{{ product.vendor | default: shop.name }}</span>
+        
+        <h1 class="product-title">
+            {%- assign title_parts = product.title | split: ' ' -%}
+            {%- for part in title_parts -%}
+                {%- if forloop.last -%}
+                    <em>{{ part }}</em>
+                {%- else -%}
+                    {{ part }} 
+                {%- endif -%}
             {%- endfor -%}
-          </div>
+        </h1>
+
+        <div class="product-price" id="activePrice">
+            {{ product.selected_or_first_available_variant.price | money }}
         </div>
-      {%- endunless -%}
 
-      <div class="product-actions">
-        <button type="submit" name="add" class="add-to-cart" {% unless product.available %}disabled{% endunless %}>
-          {% if product.available %}
-            Add to Bag — <span id="price-target">{{ product.selected_or_first_available_variant.price | money }}</span>
-          {% else %}
-            Sold Out
-          {% endif %}
-        </button>
-      </div>
-    {%- endform -%}
+        <div class="product-description">
+            {{ product.description | default: "Discover this exquisite scent through our hand-decanted discovery sizes." }}
+        </div>
 
-    <div class="product-features">
-      <div class="feature-item">
-        <h4>100% Authentic</h4>
-        <p>Decanted directly from the original manufacturer bottle.</p>
-      </div>
-      <div class="feature-item">
-        <h4>Discovery Sizing</h4>
-        <p>Perfect for testing before committing to a full bottle.</p>
-      </div>
+        {%- form 'product', product, id: 'product-form' -%}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variantInput">
+
+            {%- unless product.has_only_default_variant -%}
+                <div style="margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; color: var(--ink-tertiary); letter-spacing: 0.1em;">Discovery Size</div>
+                <div class="variant-selector" id="variantSelector">
+                    {%- for variant in product.variants -%}
+                        <button type="button" class="variant-option {% if variant == product.selected_or_first_available_variant %}selected{% endif %}" 
+                                data-variant-id="{{ variant.id }}"
+                                data-price="{{ variant.price | money }}">
+                            {{ variant.title }}
+                        </button>
+                    {%- endfor -%}
+                </div>
+            {%- endunless -%}
+
+            <div class="add-btn-wrap" style="margin-top: var(--space-md);">
+                <button type="submit" name="add" class="btn btn--primary add-bag-btn" id="addToBagBtn" {% unless product.available %}disabled{% endunless %}>
+                    {%- if product.available -%}
+                        Add to Bag — <span id="btnPrice">{{ product.selected_or_first_available_variant.price | money }}</span>
+                        <span class="btn-arrow">→</span>
+                    {%- else -%}
+                        Sold Out
+                    {%- endif -%}
+                </button>
+            </div>
+        {%- endform -%}
+
+        <div class="product-features">
+            <div class="feature-item">
+                <h4>Authenticity</h4>
+                <p>Hand-decanted from the original manufacturer bottle.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Shipping</h4>
+                <p>Insured delivery in premium protective glass.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Returns</h4>
+                <p>Satisfaction guaranteed or full refund within 14 days.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Lab Standard</h4>
+                <p>Surgical-grade tools, climate-controlled environment.</p>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
-
-{% schema %}
-{
-  "name": "Product Information",
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "This section powers the main product page layout."
-    }
-  ]
-}
-{% endschema %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const sizeOptions = document.querySelectorAll('.size-option');
-    const variantInput = document.querySelector('input[name="id"]');
-    const priceTarget = document.getElementById('price-target');
+    const variantOptions = document.querySelectorAll('.variant-option');
+    const variantInput = document.getElementById('variantInput');
+    const activePrice = document.getElementById('activePrice');
+    const btnPrice = document.getElementById('btnPrice');
 
-    sizeOptions.forEach(option => {
+    variantOptions.forEach(option => {
       option.addEventListener('click', function() {
-        sizeOptions.forEach(opt => opt.classList.remove('active'));
-        this.classList.add('active');
+        variantOptions.forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
         
         const variantId = this.dataset.variantId;
         const price = this.dataset.price;
         
-        variantInput.value = variantId;
-        if(priceTarget) priceTarget.innerText = price;
+        if (variantInput) variantInput.value = variantId;
+        if (activePrice) activePrice.innerText = price;
+        if (btnPrice) btnPrice.innerText = price;
       });
     });
   });
 </script>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": []
+}
+{% endschema %}

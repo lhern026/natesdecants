@@ -1,0 +1,54 @@
+<div class="collection-hero">
+    <div class="container">
+        <span class="eyebrow" style="margin-bottom: 1rem;">Fragrance Library</span>
+        <h1 class="display-xl">{{ collection.title | default: 'All Products' }}</h1>
+        <p class="body-text" style="margin-top: 1.5rem;">
+          {{ collection.description | default: 'Explore our curated selection of high-end fragrance decants. Sourced authentically, bottled with care.' }}
+        </p>
+    </div>
+</div>
+
+<main id="main" class="container section-gap">
+  <div id="productGrid" class="collection-grid stagger-children">
+    {%- paginate collection.products by 48 -%}
+      {%- for product in collection.products -%}
+        <a href="{{ product.url | within: collection }}" class="product-card reveal">
+            <div class="product-card__image">
+                {%- if product.featured_image -%}
+                  {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag }}
+                {%- endif -%}
+                
+                <form method="post" action="/cart/add" class="product-card__quick-add-form">
+                    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+                    <button type="submit" class="product-card__quick-add" aria-label="Quick add {{ product.title }} to bag">
+                        +
+                    </button>
+                </form>
+            </div>
+            <div class="product-card__info">
+                <span class="product-card__vendor">{{ product.vendor }}</span>
+                <h3 class="product-card__title">{{ product.title }}</h3>
+                <p class="product-card__price">From {{ product.price | money }}</p>
+            </div>
+        </a>
+      {%- else -%}
+        <p>No products found in this collection.</p>
+      {%- endfor -%}
+
+      {%- if paginate.pages > 1 -%}
+        <div class="pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</main>
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": []
+}
+{% endschema %}

@@ -1,42 +1,66 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
+
       <div class="footer-brand">
-        <h3>Nathan's <em style="font-style:italic; color: var(--accent);">Decants</em></h3>
-        <p>Authentic fragrance discovery from the world's most prestigious houses. Experience luxury, one spray at a time.</p>
+        <h3>{{ section.settings.brand_name | default: shop.name }}</h3>
+        <p>{{ section.settings.brand_tagline }}</p>
+        <div class="footer-socials" style="margin-top: var(--space-md);">
+          {%- if section.settings.instagram_url != blank -%}
+            <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.tiktok_url != blank -%}
+            <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.82a8.18 8.18 0 0 0 4.78 1.52V6.89a4.85 4.85 0 0 1-1.01-.2z"/></svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.twitter_url != blank -%}
+            <a href="{{ section.settings.twitter_url }}" target="_blank" rel="noopener" aria-label="X / Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          {%- endif -%}
+        </div>
       </div>
+
       <div class="footer-col">
-        <h4>Shop</h4>
+        <h4>{{ section.settings.col1_heading | default: 'Shop' }}</h4>
         <ul>
-          {% for link in linklists.footer.links %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {% else %}
-            <li><a href="/collections/all">All Products</a></li>
+          {%- assign col1_menu = linklists[section.settings.col1_menu] -%}
+          {%- if col1_menu.links.size > 0 -%}
+            {%- for link in col1_menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="{{ routes.all_products_collection_url }}">All Products</a></li>
             <li><a href="/collections/new-arrivals">New Arrivals</a></li>
             <li><a href="/collections/bestsellers">Bestsellers</a></li>
-          {% endfor %}
+          {%- endif -%}
         </ul>
       </div>
+
       <div class="footer-col">
-        <h4>Info</h4>
+        <h4>{{ section.settings.col2_heading | default: 'Info' }}</h4>
         <ul>
-          <li><a href="/pages/about">About Us</a></li>
-          <li><a href="/pages/contact">Contact</a></li>
-          <li><a href="/policies/shipping-policy">Shipping</a></li>
-          <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+          {%- assign col2_menu = linklists[section.settings.col2_menu] -%}
+          {%- if col2_menu.links.size > 0 -%}
+            {%- for link in col2_menu.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          {%- else -%}
+            <li><a href="/pages/about">About Us</a></li>
+            <li><a href="/pages/contact">Contact</a></li>
+            <li><a href="{{ routes.root_url }}policies/shipping-policy">Shipping</a></li>
+            <li><a href="{{ routes.root_url }}policies/privacy-policy">Privacy Policy</a></li>
+          {%- endif -%}
         </ul>
       </div>
+
     </div>
+
     <div class="footer-bottom">
-      <p>&copy; {{ 'now' | date: "%Y" }} Nathan's Decants. All rights reserved.</p>
-      <div class="footer-socials">
-        {% if section.settings.instagram_url != blank %}
-          <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener">Instagram</a>
-        {% endif %}
-        {% if section.settings.tiktok_url != blank %}
-          <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener">TikTok</a>
-        {% endif %}
-      </div>
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.brand_name | default: shop.name }}. {{ section.settings.copyright_text | default: 'All rights reserved.' }}</p>
     </div>
   </div>
 </footer>
@@ -46,6 +70,32 @@
   "name": "Footer",
   "settings": [
     {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "info": "Defaults to shop name if blank"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_tagline",
+      "label": "Tagline",
+      "default": "Authentic fragrance discovery from the world's most prestigious houses. Experience luxury, one spray at a time."
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright suffix",
+      "default": "All rights reserved."
+    },
+    {
+      "type": "header",
+      "content": "Social links"
+    },
+    {
       "type": "url",
       "id": "instagram_url",
       "label": "Instagram URL"
@@ -54,6 +104,42 @@
       "type": "url",
       "id": "tiktok_url",
       "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_url",
+      "label": "X / Twitter URL"
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type": "text",
+      "id": "col1_heading",
+      "label": "Heading",
+      "default": "Shop"
+    },
+    {
+      "type": "link_list",
+      "id": "col1_menu",
+      "label": "Menu",
+      "default": "footer"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "text",
+      "id": "col2_heading",
+      "label": "Heading",
+      "default": "Info"
+    },
+    {
+      "type": "link_list",
+      "id": "col2_menu",
+      "label": "Menu"
     }
   ]
 }

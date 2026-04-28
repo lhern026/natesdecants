@@ -1,0 +1,10 @@
+*.zip
+scratch/
+check_results.json
+check_results.txt
+final_check.json
+theme_check_errors.json
+.DS_Store
+.env
+NatesDecants/
+skills/

@@ -39,6 +39,11 @@
     color: var(--accent);
   }
 
+  .header__logo {
+    max-width: {{ settings.logo_width }}px;
+    height: auto;
+  }
+
   .main-nav ul {
     display: flex;
     gap: 2.5rem;
@@ -85,7 +90,13 @@
 <header class="site-header" id="SiteHeader">
   <div class="header-pill">
     <a href="{{ routes.root_url }}" class="logo">
-      {{ shop.name | split: ' ' | first }} <em>{{ shop.name | split: ' ' | last }}</em>
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 400 | image_tag: class: 'header__logo', alt: shop.name }}
+      {%- elsif shop.name contains ' ' -%}
+        {{ shop.name | split: ' ' | first }} <em>{{ shop.name | split: ' ' | last }}</em>
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
     </a>
     
     <nav class="main-nav">
@@ -97,7 +108,7 @@
     </nav>
 
     <div class="header-icons">
-      <a href="{{ routes.search_url }}" aria-label="Search">
+      <a href="{{ routes.search_url }}" id="searchTrigger" aria-label="Search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m21 21-5.2-5.2"/></svg>
       </a>
       <a href="{{ routes.cart_url }}" aria-label="Cart">
@@ -110,6 +121,8 @@
     </div>
   </div>
 </header>
+
+{% render 'search-overlay' %}
 
 <div class="mobile-menu-overlay" id="mobileMenu">
   <button class="mobile-menu-close" onclick="this.parentElement.classList.remove('active')">&times;</button>

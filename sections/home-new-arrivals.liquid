@@ -1,0 +1,134 @@
+{%- assign col = section.settings.collection -%}
+{%- assign has_products = false -%}
+{%- if col != blank and col.products_count > 0 -%}
+  {%- assign has_products = true -%}
+{%- endif -%}
+
+{%- if has_products -%}
+<section class="container section-gap reveal">
+  <div class="section-header">
+    <div class="section-header-left">
+      <span class="eyebrow" style="margin-bottom: 0.5rem;">{{ section.settings.eyebrow | default: 'Fresh Additions' }}</span>
+      <h2 class="display-md">{{ section.settings.heading | default: 'New Arrivals' }}</h2>
+    </div>
+    <a href="{{ col.url }}" class="btn btn--outline">{{ section.settings.cta_label | default: 'Shop All New' }}</a>
+  </div>
+
+  <div class="product-grid stagger-children" style="grid-template-columns: 1fr 1fr; gap: var(--space-xl);">
+
+    {%- assign first = col.products[0] -%}
+    <a href="{{ first.url | within: col }}" class="product-card">
+      <div class="product-card__image" style="min-height: 400px; padding: var(--space-xl);">
+        <span class="product-card__badge">New Arrival</span>
+        {%- if first.featured_image -%}
+          {{ first.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: first.title }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+        <form method="post" action="/cart/add" class="product-card__quick-add-form">
+          <input type="hidden" name="id" value="{{ first.selected_or_first_available_variant.id }}">
+          <button type="submit" class="product-card__quick-add" aria-label="Quick add {{ first.title | escape }} to bag">+</button>
+        </form>
+      </div>
+      <div class="product-card__info">
+        <span class="product-card__vendor">{{ first.vendor }}</span>
+        <h3 class="product-card__title">{{ first.title }}</h3>
+        <p class="product-card__price">From {{ first.price_min | money }}</p>
+      </div>
+    </a>
+
+    <div style="display: grid; grid-template-rows: 1fr 1fr; gap: var(--space-md);">
+      {%- if col.products_count >= 3 -%}
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+          {%- for i in (1..2) -%}
+            {%- assign p = col.products[i] -%}
+            <a href="{{ p.url | within: col }}" class="product-card">
+              <div class="product-card__image">
+                {%- if p.featured_image -%}
+                  {{ p.featured_image | image_url: width: 400 | image_tag: loading: 'lazy', alt: p.title }}
+                {%- else -%}
+                  {{ 'product-2' | placeholder_svg_tag }}
+                {%- endif -%}
+                <form method="post" action="/cart/add" class="product-card__quick-add-form">
+                  <input type="hidden" name="id" value="{{ p.selected_or_first_available_variant.id }}">
+                  <button type="submit" class="product-card__quick-add" aria-label="Quick add {{ p.title | escape }} to bag">+</button>
+                </form>
+              </div>
+              <div class="product-card__info">
+                <span class="product-card__vendor">{{ p.vendor }}</span>
+                <h3 class="product-card__title">{{ p.title }}</h3>
+                <p class="product-card__price">From {{ p.price_min | money }}</p>
+              </div>
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if col.products_count >= 4 -%}
+        {%- assign fourth = col.products[3] -%}
+        <a href="{{ fourth.url | within: col }}" class="product-card">
+          <div class="product-card__image" style="aspect-ratio: auto; height: 100%; min-height: 220px;">
+            {%- if fourth.featured_image -%}
+              {{ fourth.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: fourth.title }}
+            {%- else -%}
+              {{ 'product-3' | placeholder_svg_tag }}
+            {%- endif -%}
+            <form method="post" action="/cart/add" class="product-card__quick-add-form">
+              <input type="hidden" name="id" value="{{ fourth.selected_or_first_available_variant.id }}">
+              <button type="submit" class="product-card__quick-add" aria-label="Quick add {{ fourth.title | escape }} to bag">+</button>
+            </form>
+          </div>
+          <div class="product-card__info">
+            <span class="product-card__vendor">{{ fourth.vendor }}</span>
+            <h3 class="product-card__title">{{ fourth.title }}</h3>
+            <p class="product-card__price">From {{ fourth.price_min | money }}</p>
+          </div>
+        </a>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+{%- else -%}
+  {%- if request.design_mode -%}
+    <div style="padding:3rem;text-align:center;border:2px dashed rgba(255,255,255,0.15);margin:2rem;">
+      <p style="opacity:0.5;font-size:0.875rem;">Select a collection in the New Arrivals section settings to show products here.</p>
+    </div>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "New Arrivals",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Fresh Additions"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop All New"
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals"
+    }
+  ]
+}
+{% endschema %}

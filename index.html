@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/theme.css">
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <div class="ambient-orb"></div>
     <a href="#main" class="skip-link">Skip to content</a>
 
@@ -149,7 +150,7 @@
                 <div class="value-section-inner">
                     <div class="value-section-text">
                         <span class="eyebrow">The Math Is Simple</span>
-                        <h2>Spend smarter.<br><em>Smell better.</em></h2>
+                        <h2>Spend <em>smarter.</em><br>Smell better.</h2>
                         <p>Most people wear the same 2 scents their whole life — not because they love them, but because committing to a $400 bottle feels like a gamble. We fixed that.</p>
                         <a href="collection.html" class="btn btn--primary" style="margin-top: var(--space-lg);">
                             Start Exploring
@@ -602,7 +603,10 @@
         </div>
     </footer>
 
+    <div class="custom-cursor"></div>
+
     <script src="assets/cart.js"></script>
+    <script src="assets/theme.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -632,14 +636,19 @@
             pill.addEventListener('click', function(e) {
                 document.querySelectorAll('.scent-pill').forEach(p => p.classList.remove('active'));
                 this.classList.add('active');
-                // Navigation happens naturally via href
             });
         });
 
-        // ── Search close ─────────────────────────────
-        document.getElementById('searchClose')?.addEventListener('click', () => {
-            document.getElementById('searchOverlay').classList.remove('active');
-        });
+        // ── Hero Mouse Parallax ──────────────────────
+        const hero = document.querySelector('.hero-image-inner');
+        const img  = hero?.querySelector('img');
+        if (hero && img) {
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 45;
+                const y = (window.innerHeight / 2 - e.pageY) / 45;
+                img.style.transform = `scale(1.08) translate(${x}px, ${y}px)`;
+            });
+        }
 
     });
     </script>

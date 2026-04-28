@@ -1,0 +1,38 @@
+<section class="scent-finder reveal">
+  <div class="container">
+      <div class="scent-finder-inner">
+          <div class="scent-finder-text">
+              <span class="eyebrow">Scent Profiling</span>
+              <h2 class="display-md">Not sure where<br>to start?</h2>
+              <p>Pick what moves you. We'll meet you there.</p>
+              <a href="{{ routes.collections_url }}" class="btn btn--primary" style="margin-top: var(--space-sm);">
+                  Browse the Full Library
+                  <span class="btn-arrow">→</span>
+              </a>
+          </div>
+          <div>
+              <div class="scent-pills" id="scentPills">
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Woody" class="scent-pill" data-profile="woody">Woody &amp; Smoky</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Fresh" class="scent-pill" data-profile="fresh">Fresh &amp; Clean</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Floral" class="scent-pill" data-profile="floral">Floral &amp; Romantic</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Gourmand" class="scent-pill" data-profile="gourmand">Warm &amp; Gourmand</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Citrus" class="scent-pill" data-profile="citrus">Citrus &amp; Bright</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Oriental" class="scent-pill" data-profile="oriental">Dark &amp; Oriental</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Aquatic" class="scent-pill" data-profile="aquatic">Aquatic &amp; Marine</a>
+                  <a href="{{ routes.collections_url }}?filter.p.tag=Leather" class="scent-pill" data-profile="leather">Leather &amp; Animalic</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Scent Finder",
+  "presets": [
+    {
+      "name": "Scent Finder"
+    }
+  ]
+}
+{% endschema %}

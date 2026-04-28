@@ -1,0 +1,93 @@
+<section class="process-section reveal">
+  <div class="container section-gap-lg">
+    <div class="process-inner">
+      <div class="process-header">
+        <span class="eyebrow" style="margin-bottom: var(--space-sm);">{{ section.settings.eyebrow | default: 'How It Works' }}</span>
+        <h2 class="display-md">{{ section.settings.heading | default: 'From our lab to your wrist.' | newline_to_br }}</h2>
+      </div>
+      <div class="process-steps">
+        {%- for block in section.blocks -%}
+          <div class="process-step" {{ block.shopify_attributes }}>
+            <span class="step-number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <div class="step-content">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.body }}</p>
+            </div>
+          </div>
+        {%- else -%}
+          <div class="process-step">
+            <span class="step-number">01</span>
+            <div class="step-content">
+              <h3>Pick your scents</h3>
+              <p>Browse 49+ fragrances across Creed, Guerlain, Louis Vuitton, Byredo, and beyond. No gatekeeping.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span class="step-number">02</span>
+            <div class="step-content">
+              <h3>We hand-pour, then pack</h3>
+              <p>Each decant is drawn from an original retail bottle using surgical-grade equipment in our climate-controlled studio. Zero contamination guaranteed.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span class="step-number">03</span>
+            <div class="step-content">
+              <h3>Discover, then commit</h3>
+              <p>Love it? Now you know which full bottle is worth every dollar. Not feeling it? You spent $15 — not $435.</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Process",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "How It Works"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From our lab\nto your wrist."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step title"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Description",
+          "default": "Step description."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Process",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Pick your scents", "body": "Browse 49+ fragrances across Creed, Guerlain, Louis Vuitton, Byredo, and beyond. No gatekeeping." } },
+        { "type": "step", "settings": { "title": "We hand-pour, then pack", "body": "Each decant is drawn from an original retail bottle using surgical-grade equipment in our climate-controlled studio. Zero contamination guaranteed." } },
+        { "type": "step", "settings": { "title": "Discover, then commit", "body": "Love it? Now you know which full bottle is worth every dollar. Not feeling it? You spent $15 — not $435." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

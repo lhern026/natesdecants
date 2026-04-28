@@ -3,28 +3,71 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Experience Luxury. Curate Your Collection.",
-        "subheading": "Premium Fragrance Decants",
-        "button_label": "Shop The Collection"
+        "heading": "<p>Try before you invest.</p>",
+        "subheading": "Discovery-sized decants from Creed, Louis Vuitton, Guerlain, and 40+ prestige houses. Starting at $13. No $400 commitment required.",
+        "button_label": "Explore Collection",
+        "fallback_asset": "hero.png"
       }
     },
-    "featured_collection": {
+    "video": {
+      "type": "home-video",
+      "settings": {
+        "eyebrow": "The Experience",
+        "heading": "Luxury, distilled."
+      }
+    },
+    "marquee": {
+      "type": "home-marquee",
+      "settings": {}
+    },
+    "value_proposition": {
+      "type": "home-value",
+      "settings": {}
+    },
+    "best_sellers": {
       "type": "featured-collection",
       "settings": {
-        "title": "Bestsellers",
-        "subtitle": "Most loved by our community.",
-        "products_to_show": 4
+        "title": "The Bestsellers",
+        "subheading": "Community Favorites",
+        "limit": 4
       }
-    }
-  ,
-    "footer": {
-      "type": "footer",
-      "settings": {
-      }
+    },
+    "process": {
+      "type": "home-process",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "home-testimonials",
+      "settings": {}
+    },
+    "scent_finder": {
+      "type": "home-scent-finder",
+      "settings": {}
+    },
+    "new_arrivals": {
+      "type": "home-new-arrivals",
+      "settings": {}
+    },
+    "trust_bar": {
+      "type": "home-trust-bar",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "home-newsletter",
+      "settings": {}
     }
   },
   "order": [
     "hero",
-    "featured_collection"
+    "video",
+    "marquee",
+    "value_proposition",
+    "best_sellers",
+    "process",
+    "testimonials",
+    "scent_finder",
+    "new_arrivals",
+    "trust_bar",
+    "newsletter"
   ]
 }

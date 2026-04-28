@@ -68,6 +68,7 @@
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <div class="ambient-orb"></div>
     <a href="#main" class="skip-link">Skip to content</a>
 
@@ -201,12 +202,13 @@
     </footer>
 
     <script src="assets/cart.js"></script>
+    <script src="assets/theme.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const form     = document.getElementById('contactForm');
         const success  = document.getElementById('formSuccess');
 
-        form.addEventListener('submit', (e) => {
+        form?.addEventListener('submit', (e) => {
             e.preventDefault();
             let valid = true;
 
@@ -216,7 +218,7 @@
 
             // Validate name
             const name = document.getElementById('contactName');
-            if (!name.value.trim()) {
+            if (name && !name.value.trim()) {
                 document.getElementById('nameError').textContent = 'Please enter your name.';
                 name.classList.add('error');
                 valid = false;
@@ -225,11 +227,11 @@
             // Validate email
             const email = document.getElementById('contactEmail');
             const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email.value.trim()) {
+            if (email && !email.value.trim()) {
                 document.getElementById('emailError').textContent = 'Please enter your email.';
                 email.classList.add('error');
                 valid = false;
-            } else if (!emailRe.test(email.value)) {
+            } else if (email && !emailRe.test(email.value)) {
                 document.getElementById('emailError').textContent = 'Please enter a valid email address.';
                 email.classList.add('error');
                 valid = false;
@@ -237,7 +239,7 @@
 
             // Validate message
             const message = document.getElementById('contactMessage');
-            if (!message.value.trim()) {
+            if (message && !message.value.trim()) {
                 document.getElementById('messageError').textContent = 'Please enter a message.';
                 message.classList.add('error');
                 valid = false;
@@ -249,10 +251,6 @@
             form.style.display = 'none';
             success.style.display = 'block';
             setTimeout(() => success.classList.add('visible'), 30);
-        });
-
-        document.getElementById('searchClose')?.addEventListener('click', () => {
-            document.getElementById('searchOverlay').classList.remove('active');
         });
     });
     </script>

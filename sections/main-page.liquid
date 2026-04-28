@@ -1,0 +1,30 @@
+<section class="container section-gap reveal">
+  <div class="page-header" style="margin-bottom: var(--space-lg);">
+    <h1 class="display-lg">{{ page.title }}</h1>
+  </div>
+  <div class="body-text page-content">
+    {{ page.content }}
+  </div>
+</section>
+
+{% style %}
+  .page-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .page-header {
+    text-align: center;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Generic Page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Page Content"
+    }
+  ]
+}
+{% endschema %}

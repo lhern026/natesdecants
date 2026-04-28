@@ -140,6 +140,7 @@
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
     <div class="ambient-orb"></div>
     <a href="#main" class="skip-link">Skip to content</a>
 
@@ -212,6 +213,7 @@
     </footer>
 
     <script src="assets/cart.js"></script>
+    <script src="assets/theme.js"></script>
     <script>
     let currentProduct = null;
     let selectedVariant = null;
@@ -337,10 +339,8 @@
                 }, 2000);
             });
 
-            // Reveal
-            setTimeout(() => {
-                document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-            }, 80);
+            // Trigger re-reveals for dynamic content
+            Theme.initReveals();
 
         } catch (error) {
             console.error('Error loading product:', error);
@@ -349,9 +349,6 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         loadProduct();
-        document.getElementById('searchClose')?.addEventListener('click', () => {
-            document.getElementById('searchOverlay').classList.remove('active');
-        });
     });
     </script>
 </body>

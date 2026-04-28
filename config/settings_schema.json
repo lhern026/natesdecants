@@ -1,0 +1,150 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Nates Decants",
+    "theme_version": "1.1.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https://github.com/",
+    "theme_support_url": "https://support.example.com/"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image",
+        "info": "If blank, shop name is used as text"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 140
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent / Gold",
+        "default": "#b68c5d"
+      },
+      {
+        "type": "color",
+        "id": "color_canvas",
+        "label": "Background (canvas)",
+        "default": "#0a0a0a"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Foreground (ink)",
+        "default": "#fdfbf7"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Card surface",
+        "default": "#141414"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "font_body",
+        "label": "Body font",
+        "options": [
+          { "value": "Inter, sans-serif", "label": "Inter" },
+          { "value": "'DM Sans', sans-serif", "label": "DM Sans" },
+          { "value": "Helvetica Neue, Helvetica, Arial, sans-serif", "label": "Helvetica Neue" }
+        ],
+        "default": "Inter, sans-serif"
+      },
+      {
+        "type": "select",
+        "id": "font_display",
+        "label": "Display / serif font",
+        "options": [
+          { "value": "'Cormorant Garamond', serif", "label": "Cormorant Garamond" },
+          { "value": "'Playfair Display', serif", "label": "Playfair Display" },
+          { "value": "Georgia, serif", "label": "Georgia" }
+        ],
+        "default": "'Cormorant Garamond', serif"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement text",
+        "info": "Leave blank to hide the bar"
+      },
+      {
+        "type": "color",
+        "id": "announcement_color",
+        "label": "Bar background color",
+        "default": "#b68c5d"
+      }
+    ]
+  },
+  {
+    "name": "Cart & Checkout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "min": 0,
+        "max": 200,
+        "step": 5,
+        "unit": "$",
+        "label": "Free shipping threshold",
+        "default": 50,
+        "info": "Set to 0 to disable the free-shipping notice"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter",
+        "label": "X / Twitter URL"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook URL"
+      }
+    ]
+  }
+]

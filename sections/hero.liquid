@@ -1,32 +1,90 @@
-<section class="hero">
-  <div class="hero-text">
-    {% if section.settings.eyebrow != blank %}
-      <span class="eyebrow">{{ section.settings.eyebrow }}</span>
-    {% endif %}
-    <h1 class="hero-title">{{ section.settings.heading }}</h1>
-    {% if section.settings.subheading != blank %}
-      <p class="hero-subtitle">{{ section.settings.subheading }}</p>
-    {% endif %}
-    <div class="hero-meta">
-      {% if section.settings.button_label != blank %}
-        <a href="{{ section.settings.button_link }}" class="btn btn--primary">
-          {{ section.settings.button_label }}
-          <span class="btn-arrow">→</span>
-        </a>
-      {% endif %}
-      {% if section.settings.secondary_label != blank %}
-        <a href="{{ section.settings.secondary_link }}" class="btn btn--ghost">{{ section.settings.secondary_label }}</a>
-      {% endif %}
+<section class="hero container">
+    <div class="hero-text">
+        <!-- Social proof above the fold -->
+        <div class="hero-proof">
+            <span class="hero-proof-stars">★★★★★</span>
+            <span class="hero-proof-divider"></span>
+            <span class="hero-proof-text">{{ section.settings.proof_text | default: "2,847 orders shipped" }}</span>
+        </div>
+
+        {% if section.settings.eyebrow != blank %}
+            <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+        {% endif %}
+        
+        <h1 class="hero-title">{{ section.settings.heading | replace: 'p>', 'span>' }}</h1>
+        
+        {% if section.settings.subheading != blank %}
+            <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        <div class="hero-meta">
+            {% if section.settings.button_label != blank %}
+                <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--primary">
+                    {{ section.settings.button_label }}
+                    <span class="btn-arrow">→</span>
+                </a>
+            {% endif %}
+            {% if section.settings.secondary_label != blank %}
+                <a href="{{ section.settings.secondary_link }}" class="btn btn--ghost">{{ section.settings.secondary_label }}</a>
+            {% endif %}
+        </div>
+
+        <!-- Trust micro-signals below CTA -->
+        <div class="hero-trust">
+            <span class="hero-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+                100% Authentic
+            </span>
+            <span class="hero-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+                Ships 1–3 Days
+            </span>
+            <span class="hero-trust-item">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+                Free Returns
+            </span>
+        </div>
     </div>
-  </div>
-  <div class="hero-image">
-    {% if section.settings.image != blank %}
-      <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}">
-    {% else %}
-      <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=85&w=1200" alt="Luxury fragrances">
-    {% endif %}
-  </div>
+
+    <div class="hero-image">
+        <div class="hero-image-inner">
+            {%- assign heading_clean = section.settings.heading | strip_html -%}
+            {%- if section.settings.video != blank -%}
+                {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '1200x' }}
+            {%- elsif section.settings.video_url != blank -%}
+                {%- if section.settings.video_url.type == 'youtube' -%}
+                    <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&controls=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {%- elsif section.settings.video_url.type == 'vimeo' -%}
+                    <iframe src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&background=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                {%- endif -%}
+            {%- elsif section.settings.image != blank -%}
+                {{ section.settings.image | image_url: width: 1200 | image_tag: alt: heading_clean, loading: 'eager' }}
+            {%- elsif section.settings.fallback_asset != blank -%}
+                <img src="{{ section.settings.fallback_asset | asset_url }}" alt="Luxury fragrances" width="1200" height="800" loading="eager">
+            {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'hero-placeholder' }}
+            {%- endif -%}
+        </div>
+        <!-- Floating savings badge on image -->
+        <div class="hero-savings-badge">
+            <span class="hero-savings-label">Save up to</span>
+            <span class="hero-savings-amount">87%</span>
+            <span class="hero-savings-sub">vs full bottle</span>
+        </div>
+    </div>
 </section>
+
+{% style %}
+    .hero-image-inner video, 
+    .hero-image-inner iframe {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+{% endstyle %}
 
 {% schema %}
 {
@@ -34,27 +92,47 @@
   "tag": "section",
   "settings": [
     {
+      "type": "video",
+      "id": "video",
+      "label": "Hero Video (Shopify hosted)",
+      "info": "Upload a video in Settings > Files and select it here for best performance."
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Hero Video URL (YouTube/Vimeo)",
+      "accept": ["youtube", "vimeo"],
+      "info": "Used if no Shopify video is selected above."
+    },
+    {
       "type": "image_picker",
       "id": "image",
-      "label": "Hero Image"
+      "label": "Hero Image (Fallback)",
+      "info": "Used if no video is provided."
+    },
+    {
+      "type": "text",
+      "id": "proof_text",
+      "label": "Social Proof Text",
+      "default": "2,847 orders shipped"
     },
     {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow Text",
-      "default": "Est. 2024 — Premium Decants"
+      "default": "Est. 2024 — Curated Discovery"
     },
     {
       "type": "richtext",
       "id": "heading",
       "label": "Heading",
-      "default": "<p>Scent<br><em>without</em><br>the splurge.</p>"
+      "default": "<p>Try before<br>you <em>invest.</em></p>"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Discovery-sized decants from Maison Francis Kurkdjian, Tom Ford, Initio, and 40+ other houses. Authentic. Affordable. Curated."
+      "default": "Discovery-sized decants from Creed, Louis Vuitton, Guerlain, and 40+ prestige houses. Starting at $13. No $400 commitment required."
     },
     {
       "type": "text",
@@ -71,12 +149,18 @@
       "type": "text",
       "id": "secondary_label",
       "label": "Secondary Link Label",
-      "default": "Our Story"
+      "default": "Our Process"
     },
     {
       "type": "url",
       "id": "secondary_link",
       "label": "Secondary Link URL"
+    },
+    {
+      "type": "text",
+      "id": "fallback_asset",
+      "label": "Fallback image filename (from Assets)",
+      "info": "Used when no image is selected above. Enter the asset filename e.g. hero.png"
     }
   ],
   "presets": [

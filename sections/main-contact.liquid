@@ -1,0 +1,159 @@
+<section class="container section-gap reveal">
+  <div class="contact-page">
+    <div class="contact-content">
+      <span class="eyebrow" style="margin-bottom: 2rem;">{{ section.settings.eyebrow | default: 'Get in Touch' }}</span>
+      <h1 class="display-lg" style="margin-bottom: var(--space-md);">{{ section.settings.heading | default: 'How can we assist you?' | replace: 'br', 'br class="desktop-only"' }}</h1>
+      <div class="body-text" style="margin-bottom: var(--space-lg);">{{ page.content | default: section.settings.subheading }}</div>
+
+      <div style="margin-top: var(--space-lg);">
+        <h4 class="eyebrow" style="color: var(--ink); margin-bottom: 0.5rem;">Email</h4>
+        <a href="mailto:{{ section.settings.email | default: shop.email }}" class="body-text" style="color: var(--accent);">{{ section.settings.email | default: shop.email }}</a>
+      </div>
+
+      <div style="margin-top: var(--space-lg);">
+        <h4 class="eyebrow" style="color: var(--ink); margin-bottom: 0.5rem;">Response Time</h4>
+        <p class="body-text">{{ section.settings.response_time | default: 'We reply within 24 hours, Monday–Friday.' }}</p>
+      </div>
+    </div>
+
+    <div class="contact-form-container">
+      {%- form 'contact' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="form-success visible">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <h3 class="display-md" style="margin-bottom: 0.5rem;">Message sent.</h3>
+            <p>Thanks for reaching out — we'll get back to you within 24 hours.</p>
+            <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost" style="margin-top: var(--space-md);">Continue Shopping</a>
+          </div>
+        {%- else -%}
+          <div class="contact-form">
+            {%- if form.errors -%}
+              <div class="field-error" style="margin-bottom: 1rem;">
+                {{ form.errors | default_errors }}
+              </div>
+            {%- endif -%}
+
+            <div class="form-group">
+              <label for="ContactFormName">Your Name</label>
+              <input type="text" id="ContactFormName" name="contact[name]" placeholder="Jane Doe" autocomplete="name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+            
+            <div class="form-group">
+              <label for="ContactFormEmail">Email Address</label>
+              <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="jane@example.com" autocomplete="email" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="ContactFormMessage">Message</label>
+              <textarea id="ContactFormMessage" name="contact[body]" rows="6" placeholder="How can we help?">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            </div>
+            
+            <button type="submit" class="btn btn--primary" style="margin-top: 0.5rem;">
+              Send Message
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .contact-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .form-group label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-secondary);
+  }
+  .form-group input,
+  .form-group textarea {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--ink);
+    transition: border-color 0.2s ease;
+    outline: none;
+    width: 100%;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--ink);
+  }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: var(--space-lg) 0;
+  }
+  .form-success.visible {
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .contact-page {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Get in Touch"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>How can we assist you?</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Questions about a specific scent? Need help tracking an order? Our team is here to ensure your discovery journey is seamless."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Display Email",
+      "info": "Leave blank to use shop email"
+    },
+    {
+      "type": "text",
+      "id": "response_time",
+      "label": "Response Time Text",
+      "default": "We reply within 24 hours, Monday–Friday."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form"
+    }
+  ]
+}
+{% endschema %}

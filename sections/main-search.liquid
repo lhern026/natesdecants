@@ -1,0 +1,57 @@
+<section class="container section-gap reveal">
+  <div class="search-header" style="text-align: center; margin-bottom: var(--space-xl);">
+    <span class="eyebrow" style="margin-bottom: 2rem;">Discovery Explorer</span>
+    <h1 class="display-lg">
+      {%- if search.performed -%}
+        {{ 'templates.search.results_for' | t: terms: search.terms }}
+      {%- else -%}
+        Search for Fragrances
+      {%- endif -%}
+    </h1>
+    
+    <div class="search-form-wrap" style="max-width: 600px; margin: var(--space-lg) auto 0;">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search by house, note, or scent..."
+          aria-label="Search Fragrances"
+          style="width: 100%; border: none; border-bottom: 1px solid var(--ink); background: transparent; padding: 1rem 0; font-family: var(--font-body); font-size: 1.25rem; outline: none;"
+        >
+        <button type="submit" style="display: none;">Search</button>
+      </form>
+    </div>
+  </div>
+
+  {%- if search.performed -%}
+    {%- paginate search.results by 12 -%}
+      {%- if search.results_count > 0 -%}
+        <div class="product-grid stagger-children">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        
+        {%- if paginate.pages > 1 -%}
+          <div class="pagination" style="margin-top: var(--space-xl); text-align: center; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div style="text-align: center; padding: var(--space-xl) 0;">
+          <p class="body-text" style="margin: 0 auto;">No results found for "{{ search.terms }}". Try searching for a different note or house.</p>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Search Results",
+  "settings": []
+}
+{% endschema %}

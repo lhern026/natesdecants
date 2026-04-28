@@ -1,0 +1,124 @@
+<section class="container section-gap-lg testimonials-section">
+  <div class="testimonials-header reveal">
+    <span class="eyebrow" style="margin-bottom: var(--space-sm);">{{ section.settings.eyebrow | default: "What They're Saying" }}</span>
+    <h2>{{ section.settings.heading | default: '2,847 customers and counting.' | newline_to_br }}</h2>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="testimonials-grid stagger-children">
+      {%- assign hero_block = section.blocks[0] -%}
+      <div class="testimonial-card testimonial-card--large" {{ hero_block.shopify_attributes }}>
+        <span class="testimonial-stars">★★★★★</span>
+        <blockquote class="testimonial-quote">{{ hero_block.settings.quote | default: '' }}</blockquote>
+        <div class="testimonial-author">
+          <span class="testimonial-name">{{ hero_block.settings.name | default: '' }}</span>
+          {%- if hero_block.settings.detail != blank -%}
+            <span class="testimonial-detail">{{ hero_block.settings.detail }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="testimonials-right">
+          {%- for block in section.blocks offset: 1 -%}
+            <div class="testimonial-card" {{ block.shopify_attributes }}>
+              <span class="testimonial-stars">★★★★★</span>
+              <blockquote class="testimonial-quote">{{ block.settings.quote | default: '' }}</blockquote>
+              <div class="testimonial-author">
+                <span class="testimonial-name">{{ block.settings.name | default: '' }}</span>
+                {%- if block.settings.detail != blank -%}
+                  <span class="testimonial-detail">{{ block.settings.detail }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- else -%}
+    <div class="testimonials-grid stagger-children">
+      <div class="testimonial-card testimonial-card--large">
+        <span class="testimonial-stars">★★★★★</span>
+        <blockquote class="testimonial-quote">"Finally got to try Aventus Cologne before committing to the $435 bottle. Three weeks later, I'd ordered the full size and four more decants. This is how fragrance discovery should work."</blockquote>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Emma R.</span>
+          <span class="testimonial-detail">New York, NY — Bought: Aventus Cologne, Layton, Absolute Aphrodisiac</span>
+        </div>
+      </div>
+      <div class="testimonials-right">
+        <div class="testimonial-card">
+          <span class="testimonial-stars">★★★★★</span>
+          <blockquote class="testimonial-quote">"Ordered 5 decants as a birthday gift for my boyfriend. The packaging felt properly luxury — not just a vial in a bag. He's already reordered Layton twice."</blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Sarah K.</span>
+            <span class="testimonial-detail">Chicago, IL</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <span class="testimonial-stars">★★★★★</span>
+          <blockquote class="testimonial-quote">"Absolute Aphrodisiac in 10ml has lasted me 4 months of daily wear. The authenticity is undeniable — it's identical to what I tried at the boutique."</blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-name">Marcus T.</span>
+            <span class="testimonial-detail">Los Angeles, CA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "What They're Saying"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "2,847 customers\nand counting."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "This is how fragrance discovery should work."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "text",
+          "id": "detail",
+          "label": "Detail (location / products)",
+          "default": "City, State"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "review", "settings": { "quote": "\"Finally got to try Aventus Cologne before committing to the $435 bottle. Three weeks later, I'd ordered the full size and four more decants. This is how fragrance discovery should work.\"", "name": "Emma R.", "detail": "New York, NY — Bought: Aventus Cologne, Layton, Absolute Aphrodisiac" } },
+        { "type": "review", "settings": { "quote": "\"Ordered 5 decants as a birthday gift for my boyfriend. The packaging felt properly luxury — not just a vial in a bag. He's already reordered Layton twice.\"", "name": "Sarah K.", "detail": "Chicago, IL" } },
+        { "type": "review", "settings": { "quote": "\"Absolute Aphrodisiac in 10ml has lasted me 4 months of daily wear. The authenticity is undeniable — it's identical to what I tried at the boutique.\"", "name": "Marcus T.", "detail": "Los Angeles, CA" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

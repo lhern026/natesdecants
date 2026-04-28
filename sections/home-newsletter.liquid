@@ -1,0 +1,98 @@
+<section class="container section-gap-lg reveal">
+  <div class="newsletter-section--enhanced">
+    <div>
+      {%- if section.settings.badge_text != blank -%}
+        <div class="newsletter-incentive">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
+          {{ section.settings.badge_text }}
+        </div>
+      {%- endif -%}
+      <h2 class="display-md" style="margin-bottom: var(--space-sm);">{{ section.settings.heading | default: '10% off your first order.' | newline_to_br }}</h2>
+      <p class="body-text">{{ section.settings.subheading | default: 'Early access to new arrivals, restocks, and exclusive drops. No spam — ever.' }}</p>
+    </div>
+    <div style="display:flex; flex-direction:column; justify-content:center; gap: var(--space-sm);">
+      {% form 'customer', class: 'newsletter-form', id: 'newsletterForm' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email"
+          name="contact[email]"
+          id="NewsletterEmail"
+          value="{{ form.email }}"
+          placeholder="{{ section.settings.placeholder | default: 'your@email.com' }}"
+          autocorrect="off"
+          autocapitalize="off"
+          required
+          aria-label="Email address">
+        <button type="submit" name="commit" id="Subscribe">
+          {{ section.settings.button_label | default: 'Claim 10% Off →' }}
+        </button>
+        {%- if form.posted_successfully? -%}
+          <div style="display:block;margin-top:0.5rem;color:#2ecc71;" aria-live="polite">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+            <span>{{ section.settings.success_message | default: "Check your inbox — your 10% code is on its way." }}</span>
+          </div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          {%- for error in form.errors -%}
+            <p style="color:#e74c3c;margin-top:0.5rem;font-size:0.85rem;">{{ form.errors.messages[error] }}</p>
+          {%- endfor -%}
+        {%- endif -%}
+      {% endform %}
+      <p style="font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-tertiary);">{{ section.settings.fine_print | default: 'No spam. Unsubscribe any time.' }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "Exclusive offer"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "10% off your\nfirst order."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Early access to new arrivals, restocks, and exclusive drops. No spam — ever."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Input placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Claim 10% Off →"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Check your inbox — your 10% code is on its way."
+    },
+    {
+      "type": "text",
+      "id": "fine_print",
+      "label": "Fine print",
+      "default": "No spam. Unsubscribe any time."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

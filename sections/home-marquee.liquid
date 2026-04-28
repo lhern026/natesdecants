@@ -1,0 +1,67 @@
+{%- assign items = section.blocks -%}
+
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    {%- for block in items -%}
+      <div class="marquee-item" {{ block.shopify_attributes }}>
+        <span class="marquee-dot"></span>{{ block.settings.text }}
+      </div>
+    {%- else -%}
+      <div class="marquee-item"><span class="marquee-dot"></span>2,847 Orders Shipped</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>100% Authentic — Sourced from Authorized Retailers</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Free Shipping Over $50</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>14-Day Returns, No Questions</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>49+ Fragrances from 20+ Houses</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Hand-Poured in Our Climate-Controlled Lab</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>UV-Protected Glass Bottles</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Surgical-Grade Equipment</div>
+    {%- endfor -%}
+    {%- for block in items -%}
+      <div class="marquee-item" aria-hidden="true"><span class="marquee-dot"></span>{{ block.settings.text }}</div>
+    {%- else -%}
+      <div class="marquee-item"><span class="marquee-dot"></span>2,847 Orders Shipped</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>100% Authentic — Sourced from Authorized Retailers</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Free Shipping Over $50</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>14-Day Returns, No Questions</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>49+ Fragrances from 20+ Houses</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Hand-Poured in Our Climate-Controlled Lab</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>UV-Protected Glass Bottles</div>
+      <div class="marquee-item"><span class="marquee-dot"></span>Surgical-Grade Equipment</div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Our promise to you"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "2,847 Orders Shipped" } },
+        { "type": "item", "settings": { "text": "100% Authentic — Sourced from Authorized Retailers" } },
+        { "type": "item", "settings": { "text": "Free Shipping Over $50" } },
+        { "type": "item", "settings": { "text": "14-Day Returns, No Questions" } },
+        { "type": "item", "settings": { "text": "49+ Fragrances from 20+ Houses" } },
+        { "type": "item", "settings": { "text": "Hand-Poured in Our Climate-Controlled Lab" } },
+        { "type": "item", "settings": { "text": "UV-Protected Glass Bottles" } },
+        { "type": "item", "settings": { "text": "Surgical-Grade Equipment" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

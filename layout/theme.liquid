@@ -28,6 +28,9 @@
   </head>
 
   <body class="gradient">
+    <div class="custom-cursor"></div>
+    <div class="ambient-orb"></div>
+    
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ "accessibility.skip_to_content" | t }}
     </a>
@@ -45,6 +48,25 @@
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
 
+    <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    {%- if settings.announcement_text != blank -%}
+      <div id="announcement-bar" style="display:none;position:fixed;bottom:0;left:0;width:100%;background:{{ settings.announcement_color | default: '#b68c5d' }};color:#0a0a0a;text-align:center;padding:0.6rem 1rem;font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;z-index:999;">
+        {{ settings.announcement_text }}
+        <button onclick="this.parentElement.remove()" aria-label="Dismiss" style="background:none;border:none;cursor:pointer;margin-left:1rem;opacity:0.6;font-size:1rem;line-height:1;">×</button>
+      </div>
+      <script>
+        (function(){
+          var bar = document.getElementById('announcement-bar');
+          if (bar && !sessionStorage.getItem('nd-ann-dismissed')) {
+            bar.style.display = '';
+            bar.querySelector('button').addEventListener('click', function() {
+              sessionStorage.setItem('nd-ann-dismissed', '1');
+            });
+          }
+        })();
+      </script>
+    {%- endif -%}
   </body>
 </html>

@@ -1,0 +1,26 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "close": "Close",
+    "refresh_page": "Refresh page",
+    "link_messages": {
+      "new_window": "Opens in a new window"
+    }
+  },
+  "templates": {
+    "search": {
+      "results_for": "Results for \"{{ terms }}\"",
+      "no_results": "No results found for \"{{ terms }}\""
+    },
+    "contact": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone number",
+        "comment": "Comment",
+        "send": "Send",
+        "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+      }
+    }
+  }
+}
