@@ -1,94 +1,479 @@
-<section class="hero container">
-    <div class="hero-text">
-        <!-- Social proof above the fold -->
-        <div class="hero-proof">
-            <span class="hero-proof-stars">★★★★★</span>
-            <span class="hero-proof-divider"></span>
-            <span class="hero-proof-text">{{ section.settings.proof_text | default: "2,847 orders shipped" }}</span>
+<section class="hero-cinematic" id="heroSection">
+    <!-- Full-bleed background media -->
+    <div class="hero-cin__media">
+        {%- assign heading_clean = section.settings.heading | strip_html -%}
+        {%- if section.settings.video != blank -%}
+            {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '2000x', class: 'hero-cin__video' }}
+        {%- elsif section.settings.video_url != blank -%}
+            {%- if section.settings.video_url.type == 'youtube' -%}
+                <iframe class="hero-cin__iframe" src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&controls=0&modestbranding=1&showinfo=0&rel=0&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            {%- elsif section.settings.video_url.type == 'vimeo' -%}
+                <iframe class="hero-cin__iframe" src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&background=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            {%- endif -%}
+        {%- elsif section.settings.image != blank -%}
+            {{ section.settings.image | image_url: width: 2400 | image_tag: alt: heading_clean, loading: 'eager', class: 'hero-cin__img', widths: '800,1200,1600,2000,2400' }}
+        {%- elsif section.settings.fallback_asset != blank -%}
+            <img src="{{ section.settings.fallback_asset | asset_url }}" alt="Luxury fragrances" class="hero-cin__img" width="2400" height="1350" loading="eager">
+        {%- else -%}
+            <div class="hero-cin__placeholder"></div>
+        {%- endif -%}
+        <!-- Dark cinematic overlay -->
+        <div class="hero-cin__overlay"></div>
+    </div>
+
+    <!-- Content layer -->
+    <div class="hero-cin__content">
+        <!-- Floating social proof pill -->
+        <div class="hero-cin__proof">
+            <span class="hero-cin__proof-stars">★★★★★</span>
+            <span class="hero-cin__proof-divider"></span>
+            <span class="hero-cin__proof-text">{{ section.settings.proof_text | default: '2,847 orders shipped' }}</span>
         </div>
 
         {% if section.settings.eyebrow != blank %}
-            <span class="eyebrow">{{ section.settings.eyebrow }}</span>
-        {% endif %}
-        
-        <h1 class="hero-title">{{ section.settings.heading | replace: 'p>', 'span>' }}</h1>
-        
-        {% if section.settings.subheading != blank %}
-            <p class="hero-subtitle">{{ section.settings.subheading }}</p>
+            <span class="hero-cin__eyebrow">{{ section.settings.eyebrow }}</span>
         {% endif %}
 
-        <div class="hero-meta">
+        <h1 class="hero-cin__title">{{ section.settings.heading | replace: 'p>', 'span>' }}</h1>
+
+        {% if section.settings.subheading != blank %}
+            <p class="hero-cin__subtitle">{{ section.settings.subheading }}</p>
+        {% endif %}
+
+        <div class="hero-cin__actions">
             {% if section.settings.button_label != blank %}
-                <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--primary">
+                <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="btn btn--primary btn--hero">
                     {{ section.settings.button_label }}
                     <span class="btn-arrow">→</span>
                 </a>
             {% endif %}
             {% if section.settings.secondary_label != blank %}
-                <a href="{{ section.settings.secondary_link }}" class="btn btn--ghost">{{ section.settings.secondary_label }}</a>
+                <a href="{{ section.settings.secondary_link }}" class="btn btn--ghost-light">{{ section.settings.secondary_label }}</a>
             {% endif %}
         </div>
 
-        <!-- Trust micro-signals below CTA -->
-        <div class="hero-trust">
-            <span class="hero-trust-item">
+        <!-- Trust micro-signals -->
+        <div class="hero-cin__trust">
+            <span class="hero-cin__trust-item">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
                 100% Authentic
             </span>
-            <span class="hero-trust-item">
+            <span class="hero-cin__trust-item">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
                 Ships 1–3 Days
             </span>
-            <span class="hero-trust-item">
+            <span class="hero-cin__trust-item">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>
                 Free Returns
             </span>
         </div>
     </div>
 
-    <div class="hero-image">
-        <div class="hero-image-inner">
-            {%- assign heading_clean = section.settings.heading | strip_html -%}
-            {%- if section.settings.video != blank -%}
-                {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, image_size: '1200x' }}
-            {%- elsif section.settings.video_url != blank -%}
-                {%- if section.settings.video_url.type == 'youtube' -%}
-                    <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&playlist={{ section.settings.video_url.id }}&controls=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                {%- elsif section.settings.video_url.type == 'vimeo' -%}
-                    <iframe src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&muted=1&loop=1&background=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                {%- endif -%}
-            {%- elsif section.settings.image != blank -%}
-                {{ section.settings.image | image_url: width: 1200 | image_tag: alt: heading_clean, loading: 'eager' }}
-            {%- elsif section.settings.fallback_asset != blank -%}
-                <img src="{{ section.settings.fallback_asset | asset_url }}" alt="Luxury fragrances" width="1200" height="800" loading="eager">
-            {%- else -%}
-                {{ 'collection-1' | placeholder_svg_tag: 'hero-placeholder' }}
-            {%- endif -%}
-        </div>
-        <!-- Floating savings badge on image -->
-        <div class="hero-savings-badge">
-            <span class="hero-savings-label">Save up to</span>
-            <span class="hero-savings-amount">87%</span>
-            <span class="hero-savings-sub">vs full bottle</span>
+    <!-- Savings badge -->
+    <div class="hero-cin__badge">
+        <span class="hero-cin__badge-label">Save up to</span>
+        <span class="hero-cin__badge-amount">87%</span>
+        <span class="hero-cin__badge-sub">vs full bottle</span>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-cin__scroll">
+        <span class="hero-cin__scroll-text">Scroll</span>
+        <div class="hero-cin__scroll-line">
+            <div class="hero-cin__scroll-progress"></div>
         </div>
     </div>
 </section>
 
 {% style %}
-    .hero-image-inner video, 
-    .hero-image-inner iframe {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
+/* ═══════════════════════════════════════════════════
+   CINEMATIC HERO — Full-Bleed Immersive
+   ═══════════════════════════════════════════════════ */
+.hero-cinematic {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 700px;
+    max-height: 1200px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+/* ── Background Media ─────────────────────────────── */
+.hero-cin__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-cin__img,
+.hero-cin__video,
+.hero-cin__iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-cin__iframe {
+    border: 0;
+    pointer-events: none;
+}
+
+/* Slow cinematic zoom — makes a static image feel alive */
+.hero-cin__img {
+    animation: heroZoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+    0%   { transform: scale(1); }
+    100% { transform: scale(1.06); }
+}
+
+/* Dark cinematic overlay — gradient from bottom */
+.hero-cin__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg,
+            rgba(22, 20, 18, 0.15) 0%,
+            rgba(22, 20, 18, 0.25) 30%,
+            rgba(22, 20, 18, 0.55) 60%,
+            rgba(22, 20, 18, 0.85) 100%
+        );
+    z-index: 1;
+}
+
+.hero-cin__placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1714 0%, #2a2520 40%, #161412 100%);
+}
+
+/* ── Content Layer ────────────────────────────────── */
+.hero-cin__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(2rem, 5vw, 6rem);
+    padding-bottom: clamp(4rem, 8vh, 8rem);
+    max-width: 800px;
+}
+
+/* Social proof pill — frosted glass */
+.hero-cin__proof {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    padding: 0.5rem 1.2rem;
+    margin-bottom: var(--space-md);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cinReveal 0.8s var(--ease-out) 0.2s forwards;
+}
+
+.hero-cin__proof-stars {
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.hero-cin__proof-divider {
+    width: 1px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.hero-cin__proof-text {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(253, 251, 247, 0.6);
+}
+
+/* Eyebrow */
+.hero-cin__eyebrow {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cinReveal 0.8s var(--ease-out) 0.35s forwards;
+}
+
+/* Title — Massive, unapologetic */
+.hero-cin__title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    color: #FDFBF7;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cinReveal 1s var(--ease-out) 0.5s forwards;
+}
+
+.hero-cin__title em,
+.hero-cin__title i {
+    font-style: italic;
+    color: var(--accent);
+}
+
+.hero-cin__title span {
+    display: block;
+}
+
+/* Subtitle */
+.hero-cin__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(253, 251, 247, 0.55);
+    max-width: 48ch;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cinReveal 0.8s var(--ease-out) 0.7s forwards;
+}
+
+/* Actions */
+.hero-cin__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cinReveal 0.8s var(--ease-out) 0.85s forwards;
+}
+
+.btn--hero {
+    font-size: 0.8rem;
+    padding: 1.15rem 2.5rem;
+}
+
+.btn--ghost-light {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 1rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    color: rgba(253, 251, 247, 0.7);
+    text-decoration: none;
+    transition: all 0.4s var(--ease-out);
+    cursor: pointer;
+    background: transparent;
+}
+
+.btn--ghost-light:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #FDFBF7;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Trust items */
+.hero-cin__trust {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: cinReveal 0.8s var(--ease-out) 1s forwards;
+}
+
+.hero-cin__trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(253, 251, 247, 0.4);
+}
+
+.hero-cin__trust-item svg {
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+/* ── Savings Badge — Glassmorphism ────────────────── */
+.hero-cin__badge {
+    position: absolute;
+    bottom: clamp(4rem, 8vh, 8rem);
+    right: clamp(2rem, 5vw, 6rem);
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cinReveal 0.9s var(--ease-out) 1.1s forwards;
+}
+
+.hero-cin__badge-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(253, 251, 247, 0.45);
+}
+
+.hero-cin__badge-amount {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 1;
+    color: #FDFBF7;
+    letter-spacing: -0.03em;
+}
+
+.hero-cin__badge-sub {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+/* ── Scroll Indicator ─────────────────────────────── */
+.hero-cin__scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: cinReveal 0.8s var(--ease-out) 1.4s forwards;
+}
+
+.hero-cin__scroll-text {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(253, 251, 247, 0.3);
+}
+
+.hero-cin__scroll-line {
+    width: 1px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 1px;
+}
+
+.hero-cin__scroll-progress {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    animation: scrollPulse 2s var(--ease-in-out) infinite;
+}
+
+@keyframes scrollPulse {
+    0%   { top: -100%; }
+    50%  { top: 100%; }
+    100% { top: 100%; }
+}
+
+/* ── Reveal Animation ─────────────────────────────── */
+@keyframes cinReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero-cinematic {
+        min-height: 100svh;
+        align-items: flex-end;
+    }
+
+    .hero-cin__content {
+        padding: 0 1.5rem;
+        padding-bottom: 6rem;
+    }
+
+    .hero-cin__title {
+        font-size: clamp(2.8rem, 12vw, 4.5rem);
+        line-height: 0.95;
+    }
+
+    .hero-cin__subtitle {
+        font-size: 0.9rem;
+        max-width: 32ch;
+    }
+
+    .hero-cin__actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .btn--hero {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn--ghost-light {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-cin__badge {
+        position: relative;
+        bottom: auto;
+        right: auto;
+        display: none; /* hide on mobile to reduce clutter */
+    }
+
+    .hero-cin__trust {
+        gap: 0.75rem;
+    }
+
+    .hero-cin__scroll {
+        display: none;
+    }
+}
 {% endstyle %}
 
 {% schema %}
 {
-  "name": "Hero — Asymmetric Split",
+  "name": "Hero — Cinematic",
   "tag": "section",
   "settings": [
     {
@@ -132,7 +517,7 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Discovery-sized decants from Creed, Louis Vuitton, Guerlain, and 40+ prestige houses. Starting at $13. No $400 commitment required."
+      "default": "Discovery-sized decants from Creed, Louis Vuitton, Guerlain, and 40+ prestige houses. Starting at $13."
     },
     {
       "type": "text",
@@ -165,7 +550,7 @@
   ],
   "presets": [
     {
-      "name": "Hero — Asymmetric Split"
+      "name": "Hero — Cinematic"
     }
   ]
 }

@@ -320,67 +320,9 @@ img {
 }
 
 /* ═══════════════════════════════════════════════════
-   6. HERO — Asymmetric Split (variance 8, NOT centered)
+   6. HERO — Cinematic Full-Bleed
+   Styles are self-contained in sections/hero.liquid
    ═══════════════════════════════════════════════════ */
-.hero {
-  min-height: 90vh;
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: var(--space-lg);
-  align-items: center;
-  position: relative;
-  padding-top: 120px;
-}
-
-.hero-text {
-  padding: var(--space-lg) 0;
-}
-
-.hero-image {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.hero-image-inner {
-  width: 100%;
-  height: 80vh;
-  background: #f4efea;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  position: relative;
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.2s var(--ease-spring);
-}
-
-.hero-image:hover img {
-  transform: scale(1.03);
-}
-
-/* Stylistic fade from image → background */
-.hero-image::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(to top, var(--canvas), transparent);
-  pointer-events: none;
-}
-
-.hero-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-}
 
 /* ═══════════════════════════════════════════════════
    7. BUTTONS — Tactile, no neon glow
@@ -807,26 +749,7 @@ img {
   transform: translateY(0);
 }
 
-/* Hero-specific animations */
-.hero-text .eyebrow,
-.hero-text .hero-title,
-.hero-text .hero-subtitle,
-.hero-text .hero-meta {
-  opacity: 0;
-  transform: translateY(24px);
-  animation: revealUp 0.9s var(--ease-out) forwards;
-}
-
-.hero-text .eyebrow      { animation-delay: 0.18s; }
-.hero-text .hero-title    { animation-delay: 0.3s; }
-.hero-text .hero-subtitle { animation-delay: 0.48s; }
-.hero-text .hero-meta     { animation-delay: 0.62s; }
-
-.hero-image img {
-  opacity: 0;
-  transform: scale(1.06);
-  animation: revealScale 1.4s var(--ease-spring) 0.3s forwards;
-}
+/* Hero animations moved to sections/hero.liquid */
 
 @keyframes revealUp {
   to {
@@ -846,25 +769,7 @@ img {
    14. RESPONSIVE — Aggressive mobile collapse
    ═══════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    padding-top: 80px;
-  }
-
-  .hero-text {
-    padding: var(--space-lg) var(--space-md);
-    order: 2;
-  }
-
-  .hero-image {
-    order: 1;
-    min-height: 50vh;
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 10vw, 4rem);
-  }
+  /* Old hero responsive rules removed — cinematic hero handles its own */
 
   .product-grid {
     grid-template-columns: 1fr;
@@ -1337,102 +1242,8 @@ img {
 }
 
 /* ═══════════════════════════════════════════════════
-   24. HERO ENHANCEMENTS
+   24. HERO ENHANCEMENTS — Moved to sections/hero.liquid
    ═══════════════════════════════════════════════════ */
-.hero-proof {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: var(--space-md);
-  opacity: 0;
-  animation: revealUp 0.7s var(--ease-out) 0.1s forwards;
-}
-
-.hero-proof-stars {
-  color: var(--accent);
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-}
-
-.hero-proof-text {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-secondary);
-}
-
-.hero-proof-divider {
-  width: 1px;
-  height: 12px;
-  background: var(--border-hover);
-}
-
-.hero-trust {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-top: var(--space-md);
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: revealUp 0.7s var(--ease-out) 0.75s forwards;
-}
-
-.hero-trust-item {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-secondary);
-}
-
-.hero-trust-item svg {
-  color: var(--accent);
-  flex-shrink: 0;
-}
-
-/* Savings badge floating on image */
-.hero-savings-badge {
-  position: absolute;
-  bottom: var(--space-md);
-  left: var(--space-md);
-  background: var(--ink);
-  color: var(--canvas);
-  border-radius: var(--radius-md);
-  padding: var(--space-sm) var(--space-md);
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  z-index: 2;
-  opacity: 0;
-  animation: revealUp 0.9s var(--ease-out) 0.9s forwards;
-}
-
-.hero-savings-label {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(253,251,247,0.5);
-}
-
-.hero-savings-amount {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--canvas);
-}
-
-.hero-savings-sub {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent);
-}
 
 /* ═══════════════════════════════════════════════════
    25. MARQUEE STRIP
